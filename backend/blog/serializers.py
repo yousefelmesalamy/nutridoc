@@ -19,3 +19,18 @@ class BlogPostListSerializer(serializers.ModelSerializer):
             "excerpt_en", "excerpt_ar", "author", "cover_image_url",
             "read_time_minutes", "published_at",
         ]
+
+
+class BlogPostDetailSerializer(BlogPostListSerializer):
+    related = serializers.SerializerMethodField()
+
+    class Meta(BlogPostListSerializer.Meta):
+        fields = BlogPostListSerializer.Meta.fields + ["body_en", "body_ar", "related"]
+
+    def get_related(self, obj):
+        related_qs = (
+            BlogPost.objects.filter(category=obj.category, is_published=True)
+            .exclude(pk=obj.pk)
+            .order_by("-published_at")[:3]
+        )
+        return BlogPostListSerializer(related_qs, many=True).data

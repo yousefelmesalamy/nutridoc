@@ -58,3 +58,39 @@ class BlogPostListAPITests(APITestCase):
         response = self.client.get("/api/posts/?q=detox")
         slugs = [p["slug"] for p in response.data["results"]]
         self.assertEqual(slugs, ["detox-tea-myth"])
+
+
+class BlogPostDetailAPITests(APITestCase):
+    def setUp(self):
+        self.category = Category.objects.create(name_en="Weight", name_ar="وزن", slug="weight")
+        self.other_category = Category.objects.create(name_en="Myths", name_ar="خرافات", slug="myths")
+        self.main = BlogPost.objects.create(
+            title_en="Main Post", title_ar="المقال الرئيسي", slug="main-post",
+            category=self.category, excerpt_en="excerpt", excerpt_ar="ملخص",
+            body_en="full body", body_ar="نص كامل", read_time_minutes=6,
+            is_published=True, published_at=timezone.now(),
+        )
+        self.related_posts = [
+            BlogPost.objects.create(
+                title_en=f"Related {i}", title_ar=f"ذو صلة {i}", slug=f"related-{i}",
+                category=self.category, excerpt_en="e", excerpt_ar="م",
+                body_en="b", body_ar="ن", read_time_minutes=5,
+                is_published=True, published_at=timezone.now(),
+            )
+            for i in range(4)
+        ]
+        self.other_category_post = BlogPost.objects.create(
+            title_en="Other Category", title_ar="فئة أخرى", slug="other-category",
+            category=self.other_category, excerpt_en="e", excerpt_ar="م",
+            body_en="b", body_ar="ن", read_time_minutes=5,
+            is_published=True, published_at=timezone.now(),
+        )
+
+    def test_detail_includes_body_and_related(self):
+        response = self.client.get("/api/posts/main-post/")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["body_en"], "full body")
+        related_slugs = [r["slug"] for r in response.data["related"]]
+        self.assertEqual(len(related_slugs), 3)
+        self.assertNotIn("main-post", related_slugs)
+        self.assertNotIn("other-category", related_slugs)

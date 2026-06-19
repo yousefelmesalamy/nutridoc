@@ -2,7 +2,7 @@ from django.db.models import Q
 from rest_framework import generics
 
 from .models import BlogPost, Category
-from .serializers import BlogPostListSerializer, CategorySerializer
+from .serializers import BlogPostDetailSerializer, BlogPostListSerializer, CategorySerializer
 
 
 class CategoryListView(generics.ListAPIView):
@@ -30,3 +30,9 @@ class BlogPostListView(generics.ListAPIView):
             )
 
         return queryset.order_by("-published_at")
+
+
+class BlogPostDetailView(generics.RetrieveAPIView):
+    queryset = BlogPost.objects.filter(is_published=True).select_related("category")
+    serializer_class = BlogPostDetailSerializer
+    lookup_field = "slug"
