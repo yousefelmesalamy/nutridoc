@@ -135,3 +135,39 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 9,
 }
+
+JAZZMIN_SETTINGS = {
+    "site_title": "NutriDoc Admin",
+    "site_header": "NutriDoc",
+    "site_brand": "NutriDoc",
+    "welcome_sign": "Welcome to the NutriDoc Admin",
+    "copyright": "NutriDoc",
+    "search_model": ["blog.BlogPost"],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "icons": {
+        "auth.User": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "blog.BlogPost": "fas fa-book",
+        "blog.Category": "fas fa-tags",
+        "leads.ContactSubmission": "fas fa-envelope",
+        "leads.PlanRequest": "fas fa-clipboard-list",
+    },
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",
+    "dark_mode_theme": None,
+    "navbar": "navbar-success navbar-dark",
+    "sidebar": "sidebar-dark-success",
+    "accent": "accent-success",
+    "brand_colour": "navbar-success",
+    "button_classes": {
+        "primary": "btn-success",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+}
