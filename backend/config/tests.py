@@ -60,3 +60,26 @@ class AdminDashboardContextTest(TestCase):
         self.assertEqual(list(recent["posts"]), list(BlogPost.objects.order_by("-created_at")[:5]))
         self.assertEqual(list(recent["plan_requests"]), list(PlanRequest.objects.order_by("-created_at")[:5]))
         self.assertEqual(list(recent["contacts"]), list(ContactSubmission.objects.order_by("-created_at")[:5]))
+
+
+class AdminDashboardTemplateTest(TestCase):
+    def setUp(self):
+        User = get_user_model()
+        self.admin_user = User.objects.create_superuser(
+            username="admin2", email="admin2@example.com", password="password123"
+        )
+        self.client.force_login(self.admin_user)
+        category = Category.objects.create(name_en="Hydration", name_ar="ترطيب", slug="hydration")
+        BlogPost.objects.create(
+            title_en="Stay Hydrated", title_ar="ترطيب", slug="stay-hydrated",
+            category=category, excerpt_en="x", excerpt_ar="x", body_en="x", body_ar="x",
+            read_time_minutes=2, is_published=True,
+        )
+
+    def test_dashboard_renders_stat_cards_and_recent_post(self):
+        response = self.client.get("/admin/")
+        self.assertContains(response, "Total Posts")
+        self.assertContains(response, "Published Posts")
+        self.assertContains(response, "Unread Contacts")
+        self.assertContains(response, "New Plan Requests")
+        self.assertContains(response, "Stay Hydrated")
