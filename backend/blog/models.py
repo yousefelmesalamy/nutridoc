@@ -11,3 +11,27 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name_en
+
+
+class BlogPost(models.Model):
+    title_en = models.CharField(max_length=200)
+    title_ar = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="posts")
+    excerpt_en = models.TextField()
+    excerpt_ar = models.TextField()
+    body_en = models.TextField()
+    body_ar = models.TextField()
+    author = models.CharField(max_length=120, default="Dr. Karim Eltaher")
+    cover_image_url = models.URLField(blank=True)
+    read_time_minutes = models.PositiveIntegerField()
+    published_at = models.DateTimeField(null=True, blank=True)
+    is_published = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-published_at"]
+
+    def __str__(self):
+        return self.title_en
