@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Explore evidence-based nutrition articles, weight management guides, and health tips from Dr. Karim Eltaher, Clinical Pharmacist and Certified Nutrition Expert.">
+  <meta name="keywords" content="nutrition blog, healthy eating tips, weight loss guide, clinical pharmacist health advice, NutriDoc blog">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Nutrition Blog | Science-Based Health Tips — NutriDoc">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"NutriDoc Blog","description":"Evidence-based nutrition and health content","author":{"@type":"Person","name":"Dr. Karim Eltaher"}}</script>
+  <style>*{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    @media (max-width:880px){.nd-h1{font-size:42px !important;}.nd-3col{grid-template-columns:1fr 1fr !important;}}
+    @media (max-width:560px){.nd-h1{font-size:34px !important;}.nd-3col{grid-template-columns:1fr !important;}.nd-sec{padding-left:20px !important;padding-right:20px !important;}}
+  </style>
+</helmet>
+<div style="font-family:'Plus Jakarta Sans','Tajawal',sans-serif;color:#0F2417;background:#fff;overflow-x:hidden">
+  <dc-import name="NutriDocNav" active="blog" lang="{{ lang }}" onToggleLang="{{ toggleLang }}" hint-size="100%,74px"></dc-import>
+  <main>
+    <section style="background:#F7FAF7;border-bottom:1px solid #E8F0E9">
+      <div class="nd-sec" style="max-width:900px;margin:0 auto;padding:78px 28px 64px;text-align:center">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E7D32">{{ eyebrow }}</span>
+        <h1 class="nd-h1" style="font-family:'Newsreader',serif;font-weight:500;font-size:50px;line-height:1.08;margin:14px 0 14px;letter-spacing:-.02em">{{ h1 }}</h1>
+        <p style="font-size:18px;color:#5C6E61;margin:0 auto 30px;max-width:54ch">{{ intro }}</p>
+        <div style="max-width:480px;margin:0 auto;position:relative">
+          <input value="{{ query }}" onInput="{{ onSearch }}" placeholder="{{ searchPlaceholder }}" style="width:100%;border:1px solid #D7E8D9;border-radius:999px;padding:15px 22px;font-size:15px;font-family:inherit;outline:none;background:#fff;color:#0F2417" style-focus="border-color:#2E7D32;box-shadow:0 0 0 3px rgba(46,125,50,.12)" />
+        </div>
+      </div>
+    </section>
+
+    <section class="nd-sec" style="max-width:1180px;margin:0 auto;padding:44px 28px 90px">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:44px">
+        <sc-for list="{{ categories }}" as="c" hint-placeholder-count="6">
+          <button onClick="{{ c.onClick }}" style="{{ c.style }}" style-hover="border-color:#2E7D32">{{ c.label }}</button>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+        <div class="nd-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <sc-for list="{{ pagePosts }}" as="post" hint-placeholder-count="6">
+            <a href="BlogPost.dc.html" style="text-decoration:none;color:inherit;background:#fff;border:1px solid #E8F0E9;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.2s" style-hover="box-shadow:0 16px 40px rgba(15,36,23,.1);transform:translateY(-4px)">
+              <div style="height:170px;background:{{ post.bg }};display:flex;align-items:flex-end;padding:14px"><span style="background:rgba(255,255,255,.92);color:#1B5E20;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px">{{ post.cat }}</span></div>
+              <div style="padding:22px 22px 24px;display:flex;flex-direction:column;flex:1">
+                <h3 style="font-size:18.5px;font-weight:700;line-height:1.3;margin:0 0 10px">{{ post.title }}</h3>
+                <p style="font-size:14.5px;line-height:1.6;color:#5C6E61;margin:0 0 18px;flex:1">{{ post.excerpt }}</p>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(140deg,#66BB6A,#2E7D32);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700">K</span>
+                  <span style="font-size:13px;color:#5C6E61;font-weight:600">{{ authorChip }}</span>
+                  <span style="margin-inline-start:auto;font-size:12.5px;color:#8A9A8E">{{ post.read }}</span>
+                </div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:60px 20px;color:#7A8A7E">
+          <div style="font-size:40px;margin-bottom:12px">🔍</div>
+          <p style="font-size:17px;margin:0">{{ noResultsMsg }}</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showPagination }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:48px">
+          <sc-for list="{{ pages }}" as="pg" hint-placeholder-count="2">
+            <button onClick="{{ pg.onClick }}" style="{{ pg.style }}">{{ pg.label }}</button>
+          </sc-for>
+        </div>
+      </sc-if>
+    </section>
+  </main>
+  <dc-import name="NutriDocFooter" lang="{{ lang }}" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang:'en', cat:'all', query:'', page:1 };
+  PER = 6;
+  componentDidMount(){ let l='en'; try{l=localStorage.getItem('nutridoc-lang')||'en';}catch(e){} this.applyLang(l); if(l!==this.state.lang) this.setState({lang:l}); }
+  applyLang(l){ document.documentElement.lang=l; document.documentElement.dir = l==='ar'?'rtl':'ltr'; }
+  posts(){
+    return [
+      { cat:'clinical', bg:'linear-gradient(140deg,#A5D6A7,#66BB6A)', t_en:'The Truth About Protein Timing — What the Science Actually Says', t_ar:'الحقيقة حول توقيت البروتين — ماذا يقول العلم فعلاً', e_en:'The anabolic window, post-workout shakes, and why total daily intake matters more.', e_ar:'النافذة البنائية ومشروبات ما بعد التمرين، ولماذا الكمية اليومية أهم.', r_en:'6 min read', r_ar:'٦ دقائق' },
+      { cat:'myths', bg:'linear-gradient(140deg,#66BB6A,#2E7D32)', t_en:'5 Food Myths Debunked by a Clinical Pharmacist', t_ar:'٥ خرافات غذائية يكشفها صيدلي إكلينيكي', e_en:'From detox teas to “negative-calorie” foods — a clinical look at popular claims.', e_ar:'من شاي الديتوكس إلى أطعمة السعرات السالبة — نظرة إكلينيكية على ادعاءات شائعة.', r_en:'5 min read', r_ar:'٥ دقائق' },
+      { cat:'clinical', bg:'linear-gradient(140deg,#1B5E20,#2E7D32)', t_en:'How Drug–Food Interactions Can Affect Your Diet', t_ar:'كيف تؤثر تفاعلات الدواء والغذاء على نظامك', e_en:'Some foods change how your medication works — and some meds change your nutrition needs.', e_ar:'بعض الأطعمة تغيّر عمل دوائك، وبعض الأدوية تغيّر احتياجاتك الغذائية.', r_en:'8 min read', r_ar:'٨ دقائق' },
+      { cat:'weight', bg:'linear-gradient(140deg,#2E7D32,#A5D6A7)', t_en:'Sustainable Weight Loss: Why Crash Diets Fail', t_ar:'فقدان الوزن المستدام: لماذا تفشل الحميات القاسية', e_en:'The metabolic and behavioral reasons rapid diets rebound — and what to do instead.', e_ar:'الأسباب الأيضية والسلوكية لارتداد الحميات السريعة — وما البديل.', r_en:'7 min read', r_ar:'٧ دقائق' },
+      { cat:'supplements', bg:'linear-gradient(140deg,#66BB6A,#1B5E20)', t_en:'Intermittent Fasting: Benefits, Risks & Who Should Avoid It', t_ar:'الصيام المتقطع: الفوائد والمخاطر ومن يجب أن يتجنبه', e_en:'A balanced, evidence-based look — including the medications that don’t mix with fasting.', e_ar:'نظرة متوازنة مبنية على الأدلة — وأدوية لا تتوافق مع الصيام.', r_en:'6 min read', r_ar:'٦ دقائق' },
+      { cat:'weight', bg:'linear-gradient(140deg,#A5D6A7,#2E7D32)', t_en:'The Role of Gut Health in Weight Management', t_ar:'دور صحة الأمعاء في إدارة الوزن', e_en:'How your microbiome influences appetite, cravings, and how you store energy.', e_ar:'كيف يؤثر ميكروبيوم أمعائك على الشهية والرغبات وتخزين الطاقة.', r_en:'5 min read', r_ar:'٥ دقائق' },
+    ];
+  }
+  renderVals(){
+    const ar = this.state.lang === 'ar';
+    const toggleLang = () => { const n=this.state.lang==='ar'?'en':'ar'; try{localStorage.setItem('nutridoc-lang',n);}catch(e){} this.applyLang(n); this.setState({lang:n}); };
+    const catDefs = [
+      { k:'all', en:'All', ar:'الكل' },
+      { k:'weight', en:'Weight Management', ar:'إدارة الوزن' },
+      { k:'clinical', en:'Clinical Nutrition', ar:'تغذية إكلينيكية' },
+      { k:'recipes', en:'Recipes', ar:'وصفات' },
+      { k:'myths', en:'Myths & Facts', ar:'حقائق وخرافات' },
+      { k:'supplements', en:'Supplements', ar:'مكملات' },
+    ];
+    const q = this.state.query.trim().toLowerCase();
+    const all = this.posts().map(p => ({ cat_k:p.cat, bg:p.bg, cat: ar?({weight:'إدارة الوزن',clinical:'تغذية إكلينيكية',myths:'حقائق وخرافات',supplements:'مكملات',recipes:'وصفات'})[p.cat]:({weight:'Weight Management',clinical:'Clinical Nutrition',myths:'Myths & Facts',supplements:'Supplements',recipes:'Recipes'})[p.cat], title: ar?p.t_ar:p.t_en, excerpt: ar?p.e_ar:p.e_en, read: ar?p.r_ar:p.r_en }));
+    let filtered = all.filter(p => (this.state.cat==='all'||p.cat_k===this.state.cat) && (!q || p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q)));
+    const totalPages = Math.max(1, Math.ceil(filtered.length / this.PER));
+    const page = Math.min(this.state.page, totalPages);
+    const pagePosts = filtered.slice((page-1)*this.PER, page*this.PER);
+    const catBtn = (active) => 'font-family:inherit;cursor:pointer;font-size:14px;font-weight:600;padding:9px 18px;border-radius:999px;transition:.18s;'+(active?'background:#1B5E20;color:#fff;border:1px solid #1B5E20;':'background:#fff;color:#445249;border:1px solid #D7E8D9;');
+    const categories = catDefs.map(c => ({ label: ar?c.ar:c.en, style: catBtn(this.state.cat===c.k), onClick: () => this.setState({ cat:c.k, page:1 }) }));
+    const pages = [];
+    for (let i=1;i<=totalPages;i++){ pages.push({ label:String(i), style:'font-family:inherit;cursor:pointer;width:42px;height:42px;border-radius:10px;font-weight:700;font-size:15px;'+(i===page?'background:#1B5E20;color:#fff;border:1px solid #1B5E20;':'background:#fff;color:#445249;border:1px solid #D7E8D9;'), onClick:()=>this.setState({page:i}) }); }
+    return {
+      lang:this.state.lang, toggleLang,
+      eyebrow: ar?'المدونة':'NutriDoc Journal',
+      h1: ar?'مدونة التغذية':'The Nutrition Blog',
+      intro: ar?'مقالات مبنية على الأدلة في التغذية وإدارة الوزن والصحة من د. كريم الطاهر.':'Evidence-based articles on nutrition, weight management, and health from Dr. Karim Eltaher.',
+      searchPlaceholder: ar?'ابحث في المقالات...':'Search articles...',
+      query: this.state.query,
+      onSearch: (e) => this.setState({ query: e.target.value, page:1 }),
+      categories,
+      pagePosts,
+      authorChip: ar?'د. كريم':'Dr. Karim',
+      hasResults: pagePosts.length>0,
+      noResults: pagePosts.length===0,
+      noResultsMsg: ar?'لا توجد مقالات مطابقة. جرّب بحثاً آخر.':'No matching articles. Try a different search.',
+      showPagination: totalPages>1,
+      pages,
+    };
+  }
+}
+</script>
+</body>
+</html>

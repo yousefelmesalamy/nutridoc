@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="What the science actually says about protein timing and the anabolic window — by Dr. Karim Eltaher, Clinical Pharmacist & Nutrition Expert.">
+  <meta name="keywords" content="protein timing, anabolic window, muscle protein synthesis, nutrition science, NutriDoc">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="The Truth About Protein Timing | NutriDoc Blog">
+  <meta property="og:type" content="article">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Truth About Protein Timing — What the Science Actually Says","author":{"@type":"Person","name":"Dr. Karim Eltaher"},"publisher":{"@type":"Organization","name":"NutriDoc","logo":{"@type":"ImageObject","url":"https://nutridoc.com/assets/nutridoc-logo.png"}},"datePublished":"2026-05-28","description":"What the science actually says about protein timing and the anabolic window."}</script>
+  <style>*{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    @media (max-width:920px){.nd-article{grid-template-columns:1fr !important;}.nd-aside{order:-1;}}
+    @media (max-width:560px){.nd-h1{font-size:30px !important;}.nd-3col{grid-template-columns:1fr !important;}.nd-sec{padding-left:20px !important;padding-right:20px !important;}}
+  </style>
+</helmet>
+<div style="font-family:'Plus Jakarta Sans','Tajawal',sans-serif;color:#0F2417;background:#fff;overflow-x:hidden">
+  <dc-import name="NutriDocNav" active="blog" lang="{{ lang }}" onToggleLang="{{ toggleLang }}" hint-size="100%,74px"></dc-import>
+  <main>
+    <!-- HERO -->
+    <section style="position:relative;height:420px;background:linear-gradient(140deg,#1B5E20,#2E7D32,#66BB6A);display:flex;align-items:flex-end">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,36,23,.78),rgba(15,36,23,.15))"></div>
+      <div class="nd-sec" style="position:relative;max-width:900px;margin:0 auto;padding:0 28px 48px;width:100%">
+        <nav style="font-size:13.5px;color:#CADCCD;margin-bottom:18px"><a href="Home.dc.html" style="color:#CADCCD;text-decoration:none">{{ crumbHome }}</a> <span style="opacity:.6">/</span> <a href="Blog.dc.html" style="color:#CADCCD;text-decoration:none">{{ crumbBlog }}</a> <span style="opacity:.6">/</span> <span style="color:#fff">{{ crumbThis }}</span></nav>
+        <span style="display:inline-block;background:#A5D6A7;color:#1B5E20;font-size:12px;font-weight:700;padding:5px 13px;border-radius:999px;margin-bottom:14px">{{ category }}</span>
+        <h1 class="nd-h1" style="font-family:'Newsreader',serif;font-weight:500;font-size:44px;line-height:1.1;color:#fff;margin:0;letter-spacing:-.02em;max-width:20ch">{{ title }}</h1>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:20px;color:#D6E8D8;font-size:14px">
+          <span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(140deg,#66BB6A,#A5D6A7);display:flex;align-items:center;justify-content:center;color:#1B5E20;font-weight:700">K</span>
+          <span style="font-weight:600;color:#fff">{{ author }}</span><span style="opacity:.6">·</span><span>{{ date }}</span><span style="opacity:.6">·</span><span>{{ readTime }}</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="nd-sec nd-article" style="max-width:1120px;margin:0 auto;padding:64px 28px 90px;display:grid;grid-template-columns:1fr 320px;gap:56px;align-items:start">
+      <!-- ARTICLE -->
+      <article style="font-size:17.5px;line-height:1.8;color:#33423A">
+        <p style="margin:0 0 22px;font-size:20px;color:#1B5E20;font-weight:500;line-height:1.6">{{ lede }}</p>
+        <p style="margin:0 0 22px">{{ p1 }}</p>
+        <h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:28px;color:#0F2417;margin:40px 0 14px;letter-spacing:-.01em">{{ h2a }}</h2>
+        <p style="margin:0 0 22px">{{ p2 }}</p>
+        <p style="margin:0 0 22px">{{ p3 }}</p>
+        <blockquote style="margin:32px 0;padding:20px 26px;border-inline-start:4px solid #66BB6A;background:#F2F8F2;border-radius:0 12px 12px 0;font-family:'Newsreader',serif;font-style:italic;font-size:20px;color:#1B5E20;line-height:1.5">{{ quote }}</blockquote>
+        <h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:28px;color:#0F2417;margin:40px 0 14px;letter-spacing:-.01em">{{ h2b }}</h2>
+        <p style="margin:0 0 18px">{{ p4 }}</p>
+        <h3 style="font-size:20px;font-weight:700;color:#0F2417;margin:28px 0 12px">{{ h3a }}</h3>
+        <ul style="margin:0 0 24px;padding-inline-start:22px;display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ bullets }}" as="b" hint-placeholder-count="3"><li style="line-height:1.6">{{ b }}</li></sc-for>
+        </ul>
+        <p style="margin:0 0 22px">{{ p5 }}</p>
+
+        <div style="margin-top:40px;padding-top:28px;border-top:1px solid #E8F0E9;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <span style="font-size:14px;font-weight:700;color:#0F2417">{{ shareLabel }}</span>
+          <button onClick="{{ copyLink }}" style="font-family:inherit;cursor:pointer;border:1px solid #D7E8D9;background:#fff;color:#1B5E20;font-weight:600;font-size:14px;padding:9px 16px;border-radius:999px;display:flex;align-items:center;gap:7px" style-hover="background:#EAF4EA">🔗 {{ copyLabel }}</button>
+          <a href="{{ waHref }}" target="_blank" rel="noopener" style="text-decoration:none;border:1px solid #D7E8D9;background:#fff;color:#1B5E20;font-weight:600;font-size:14px;padding:9px 16px;border-radius:999px;display:flex;align-items:center;gap:7px" style-hover="background:#EAF4EA">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="nd-aside" style="display:flex;flex-direction:column;gap:22px;position:sticky;top:96px">
+        <div style="border:1px solid #E2EBE3;border-radius:18px;padding:26px;background:#F7FAF7">
+          <div style="display:flex;align-items:center;gap:13px;margin-bottom:14px">
+            <span style="width:52px;height:52px;border-radius:50%;background:linear-gradient(140deg,#66BB6A,#2E7D32);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px">K</span>
+            <div><div style="font-weight:700;font-size:16px">{{ author }}</div><div style="font-size:13px;color:#2E7D32;font-weight:600">{{ authorRole }}</div></div>
+          </div>
+          <p style="margin:0 0 14px;font-size:14px;line-height:1.65;color:#5C6E61">{{ authorBio }}</p>
+          <a href="About.dc.html" style="color:#1B5E20;font-weight:700;font-size:14px;text-decoration:none;border-bottom:2px solid #A5D6A7;padding-bottom:2px">{{ authorCta }} →</a>
+        </div>
+
+        <div style="border:1px solid #E2EBE3;border-radius:18px;padding:26px">
+          <h4 style="margin:0 0 16px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#2E7D32;font-weight:700">{{ relatedTitle }}</h4>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+              <a href="BlogPost.dc.html" style="text-decoration:none;color:#0F2417;font-size:15px;font-weight:600;line-height:1.4" style-hover="color:#2E7D32">{{ r }}</a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="border-radius:18px;padding:26px;background:linear-gradient(140deg,#1B5E20,#2E7D32);color:#fff">
+          <h4 style="margin:0 0 8px;font-family:'Newsreader',serif;font-size:21px;font-weight:600">{{ subTitle }}</h4>
+          <p style="margin:0 0 16px;font-size:14px;color:#D6E8D8;line-height:1.6">{{ subText }}</p>
+          <a href="Subscription.dc.html" style="display:block;text-align:center;background:#fff;color:#1B5E20;text-decoration:none;font-weight:700;font-size:15px;padding:12px;border-radius:12px">{{ subBtn }}</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- RELATED GRID -->
+    <section style="background:#F7FAF7;border-top:1px solid #E8F0E9">
+      <div class="nd-sec" style="max-width:1180px;margin:0 auto;padding:80px 28px">
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:34px;margin:0 0 36px;letter-spacing:-.02em">{{ moreTitle }}</h2>
+        <div class="nd-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <sc-for list="{{ moreCards }}" as="post" hint-placeholder-count="3">
+            <a href="BlogPost.dc.html" style="text-decoration:none;color:inherit;background:#fff;border:1px solid #E8F0E9;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.2s" style-hover="box-shadow:0 16px 40px rgba(15,36,23,.1);transform:translateY(-4px)">
+              <div style="height:150px;background:{{ post.bg }};display:flex;align-items:flex-end;padding:14px"><span style="background:rgba(255,255,255,.92);color:#1B5E20;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px">{{ post.cat }}</span></div>
+              <div style="padding:20px"><h3 style="font-size:17.5px;font-weight:700;line-height:1.32;margin:0 0 8px">{{ post.title }}</h3><span style="font-size:13px;color:#8A9A8E">{{ post.read }}</span></div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dc-import name="NutriDocFooter" lang="{{ lang }}" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang:'en', copied:false };
+  componentDidMount(){ let l='en'; try{l=localStorage.getItem('nutridoc-lang')||'en';}catch(e){} this.applyLang(l); if(l!==this.state.lang) this.setState({lang:l}); }
+  applyLang(l){ document.documentElement.lang=l; document.documentElement.dir = l==='ar'?'rtl':'ltr'; }
+  renderVals(){
+    const ar = this.state.lang === 'ar';
+    const toggleLang = () => { const n=this.state.lang==='ar'?'en':'ar'; try{localStorage.setItem('nutridoc-lang',n);}catch(e){} this.applyLang(n); this.setState({lang:n}); };
+    const bgs=['linear-gradient(140deg,#66BB6A,#2E7D32)','linear-gradient(140deg,#1B5E20,#2E7D32)','linear-gradient(140deg,#A5D6A7,#2E7D32)'];
+    const copyLink = () => { try{ navigator.clipboard.writeText(location.href); }catch(e){} this.setState({copied:true}); setTimeout(()=>this.setState({copied:false}),1800); };
+    return {
+      lang:this.state.lang, toggleLang,
+      crumbHome: ar?'الرئيسية':'Home', crumbBlog: ar?'المدونة':'Blog',
+      crumbThis: ar?'توقيت البروتين':'Protein Timing',
+      category: ar?'تغذية إكلينيكية':'Clinical Nutrition',
+      title: ar?'الحقيقة حول توقيت البروتين — ماذا يقول العلم فعلاً':'The Truth About Protein Timing — What the Science Actually Says',
+      author: ar?'د. كريم الطاهر':'Dr. Karim Eltaher',
+      date: ar?'٢٨ مايو ٢٠٢٦':'May 28, 2026',
+      readTime: ar?'٦ دقائق قراءة':'6 min read',
+      lede: ar?'يُقال لك أن تشرب البروتين خلال ٣٠ دقيقة بعد التمرين وإلا ضاع مجهودك. لكن ماذا تقول الأدلة فعلاً؟':'You\u2019ve been told to slam a protein shake within 30 minutes of training or your gains vanish. But what does the evidence actually say?',
+      p1: ar?'فكرة «النافذة البنائية» سيطرت على ثقافة اللياقة لعقود. الحقيقة أكثر دقة وأكثر تحرراً مما تتصور.':'The idea of the \u201Canabolic window\u201D has dominated fitness culture for decades. The reality is more nuanced \u2014 and more freeing \u2014 than you think.',
+      h2a: ar?'ما هي «النافذة البنائية»؟':'What Is the \u201CAnabolic Window\u201D?',
+      p2: ar?'النافذة البنائية هي فترة مزعومة بعد التمرين يكون فيها الجسم أكثر استعداداً لامتصاص العناصر الغذائية وبناء العضلات. النظرية تقول إن تفويتها يقلل من نموك.':'The anabolic window is a supposed post-workout period when your body is primed to absorb nutrients and build muscle. The theory says missing it blunts your growth.',
+      p3: ar?'لكن المراجعات الحديثة تظهر أن النافذة أوسع بكثير — تمتد لساعات وليس دقائق. ما يهم حقاً هو إجمالي البروتين اليومي وتوزيعه على مدار اليوم.':'But recent reviews show the window is far wider \u2014 spanning hours, not minutes. What truly matters is your total daily protein and how it\u2019s distributed across the day.',
+      quote: ar?'إجمالي البروتين اليومي يتفوق على التوقيت في كل دراسة جادة تقريباً.':'Total daily protein beats timing in nearly every serious study.',
+      h2b: ar?'ماذا تفعل عملياً':'What to Do in Practice',
+      p4: ar?'بدلاً من القلق حول الدقائق، ركّز على الأساسيات التي ثبت أنها تعمل:':'Instead of stressing about minutes, focus on the fundamentals that are proven to work:',
+      h3a: ar?'ثلاث قواعد مبنية على الأدلة':'Three Evidence-Based Rules',
+      bullets: ar?['استهدف ١.٦–٢.٢ جم بروتين لكل كجم من وزن الجسم يومياً.','وزّع البروتين على ٣–٤ وجبات بكميات متقاربة.','تناول وجبة متوازنة في غضون ساعتين حول تمرينك — لا داعي للعجلة.']:['Aim for 1.6\u20132.2 g of protein per kg of body weight per day.','Spread protein across 3\u20134 meals of similar size.','Eat a balanced meal within a couple of hours around your workout \u2014 no rush needed.'],
+      p5: ar?'الخلاصة: الاتساق على المدى الطويل يتفوق على التوقيت المثالي ليوم واحد. ابنِ نظاماً يمكنك الالتزام به.':'Bottom line: long-term consistency beats perfect timing on any single day. Build a system you can actually stick to.',
+      shareLabel: ar?'شارك المقال':'Share this article',
+      copyLabel: this.state.copied ? (ar?'تم النسخ!':'Copied!') : (ar?'انسخ الرابط':'Copy link'),
+      copyLink,
+      waHref: 'https://wa.me/?text=' + encodeURIComponent(ar?'مقال رائع من نوتري دوك':'Great read from NutriDoc'),
+      authorRole: ar?'صيدلي إكلينيكي وخبير تغذية':'Clinical Pharmacist & Nutrition Expert',
+      authorBio: ar?'مؤسس نوتري دوك. يجمع بين الصيدلة الإكلينيكية وعلم التغذية لبناء خطط مبنية على الأدلة.':'Founder of NutriDoc. Combines clinical pharmacy with nutrition science to build evidence-based plans.',
+      authorCta: ar?'الملف الكامل':'Full profile',
+      relatedTitle: ar?'مقالات ذات صلة':'Related articles',
+      related: ar?['٥ خرافات غذائية يكشفها صيدلي','لماذا تفشل الحميات القاسية','دور صحة الأمعاء في إدارة الوزن']:['5 Food Myths Debunked by a Pharmacist','Why Crash Diets Always Fail','The Role of Gut Health in Weight Management'],
+      subTitle: ar?'خطتك تبدأ هنا':'Your Plan Starts Here',
+      subText: ar?'احصل على خطة تغذية مخصصة من د. كريم.':'Get a personalized nutrition plan from Dr. Karim.',
+      subBtn: ar?'اشترك الآن':'Subscribe Now',
+      moreTitle: ar?'اقرأ المزيد':'Keep Reading',
+      moreCards: [
+        { bg:bgs[0], cat: ar?'حقائق وخرافات':'Myths & Facts', title: ar?'٥ خرافات غذائية يكشفها صيدلي إكلينيكي':'5 Food Myths Debunked by a Clinical Pharmacist', read: ar?'٥ دقائق':'5 min read' },
+        { bg:bgs[1], cat: ar?'تغذية إكلينيكية':'Clinical Nutrition', title: ar?'كيف تؤثر تفاعلات الدواء والغذاء على نظامك':'How Drug\u2013Food Interactions Affect Your Diet', read: ar?'٨ دقائق':'8 min read' },
+        { bg:bgs[2], cat: ar?'إدارة الوزن':'Weight Management', title: ar?'فقدان الوزن المستدام: لماذا تفشل الحميات القاسية':'Sustainable Weight Loss: Why Crash Diets Fail', read: ar?'٧ دقائق':'7 min read' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

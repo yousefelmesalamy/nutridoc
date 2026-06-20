@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Get in touch with NutriDoc for nutrition consultations, media inquiries, or general questions. Contact Dr. Karim Eltaher directly in Riyadh, KSA.">
+  <meta name="keywords" content="contact NutriDoc, Dr Karim Eltaher contact, nutrition consultation Riyadh">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Contact Dr. Karim Eltaher | NutriDoc">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","mainEntity":{"@type":"Person","name":"Dr. Karim Eltaher","email":"karimeltaher640@gmail.com","telephone":"+966549930730","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressRegion":"Olaya","addressCountry":"SA"}}}</script>
+  <style>*{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    @media (max-width:880px){.nd-h1{font-size:40px !important;}.nd-c2{grid-template-columns:1fr !important;}}
+    @media (max-width:560px){.nd-h1{font-size:32px !important;}.nd-sec{padding-left:20px !important;padding-right:20px !important;}.nd-2f{grid-template-columns:1fr !important;}}
+  </style>
+</helmet>
+<div style="font-family:'Plus Jakarta Sans','Tajawal',sans-serif;color:#0F2417;background:#fff;overflow-x:hidden">
+  <dc-import name="NutriDocNav" active="contact" lang="{{ lang }}" onToggleLang="{{ toggleLang }}" hint-size="100%,74px"></dc-import>
+  <main>
+    <section style="background:#F7FAF7;border-bottom:1px solid #E8F0E9">
+      <div class="nd-sec" style="max-width:820px;margin:0 auto;padding:78px 28px 60px;text-align:center">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E7D32">{{ eyebrow }}</span>
+        <h1 class="nd-h1" style="font-family:'Newsreader',serif;font-weight:500;font-size:50px;line-height:1.08;margin:14px 0 14px;letter-spacing:-.02em">{{ h1 }}</h1>
+        <p style="font-size:18px;color:#5C6E61;margin:0 auto;max-width:50ch">{{ intro }}</p>
+      </div>
+    </section>
+
+    <section class="nd-sec" style="max-width:1100px;margin:0 auto;padding:72px 28px 96px">
+      <div class="nd-c2" style="display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start">
+        <!-- INFO -->
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ infoCards }}" as="c" hint-placeholder-count="3">
+            <a href="{{ c.href }}" style="text-decoration:none;display:flex;gap:15px;align-items:center;border:1px solid #E2EBE3;border-radius:16px;padding:20px;background:#fff;transition:.15s" style-hover="border-color:#A5D6A7;background:#F7FAF7">
+              <span style="width:46px;height:46px;border-radius:12px;background:#EAF4EA;color:#2E7D32;display:flex;align-items:center;justify-content:center;flex:none" innerHTML="{{ c.icon }}"></span>
+              <span><span style="display:block;font-size:12.5px;color:#8A9A8E;font-weight:600;margin-bottom:2px">{{ c.label }}</span><span style="display:block;font-size:15.5px;font-weight:700;color:#0F2417" dir="{{ c.dir }}">{{ c.value }}</span></span>
+            </a>
+          </sc-for>
+          <div style="border:1px solid #E2EBE3;border-radius:16px;padding:20px;background:#fff">
+            <span style="display:block;font-size:12.5px;color:#8A9A8E;font-weight:600;margin-bottom:12px">{{ followLabel }}</span>
+            <div style="display:flex;gap:10px">
+              <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+                <a href="{{ s.href }}" target="_blank" rel="noopener" aria-label="{{ s.name }}" style="width:42px;height:42px;border-radius:11px;background:#EAF4EA;color:#2E7D32;display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:700;font-size:17px" style-hover="background:#2E7D32;color:#fff">{{ s.glyph }}</a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div style="background:#fff;border:1px solid #E2EBE3;border-radius:22px;padding:36px;box-shadow:0 12px 40px rgba(15,36,23,.06)">
+          <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div class="nd-2f" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.name }}</span><input value="{{ f.name }}" onInput="{{ on.name }}" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.name }}</span></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.email }}</span><input type="email" value="{{ f.email }}" onInput="{{ on.email }}" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.email }}</span></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.phone }}</span><input value="{{ f.phone }}" onInput="{{ on.phone }}" dir="ltr" style="{{ inputStyle }}" /></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.subject }}</span><select value="{{ f.subject }}" onChange="{{ on.subject }}" style="{{ inputStyle }}"><sc-for list="{{ subjectOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select></label>
+              </div>
+              <label style="display:flex;flex-direction:column;gap:7px;margin-top:18px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.message }}</span><textarea value="{{ f.message }}" onInput="{{ on.message }}" rows="5" style="{{ areaStyle }}"></textarea><span style="{{ errStyle }}">{{ E.message }}</span></label>
+              <button onClick="{{ submit }}" disabled="{{ sending }}" style="{{ submitStyle }}">{{ submitLabel }}</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+            <div style="text-align:center;padding:30px 10px">
+              <div style="width:68px;height:68px;border-radius:50%;background:#EAF4EA;display:flex;align-items:center;justify-content:center;margin:0 auto 18px"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:28px;margin:0 0 10px">{{ sentTitle }}</h2>
+              <p style="font-size:16px;color:#5C6E61;margin:0;line-height:1.6">{{ sentText }}</p>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dc-import name="NutriDocFooter" lang="{{ lang }}" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang:'en', sending:false, sent:false, errors:{}, form:{ name:'', email:'', phone:'', subject:'general', message:'' } };
+  componentDidMount(){ let l='en'; try{l=localStorage.getItem('nutridoc-lang')||'en';}catch(e){} this.applyLang(l); if(l!==this.state.lang) this.setState({lang:l}); }
+  applyLang(l){ document.documentElement.lang=l; document.documentElement.dir = l==='ar'?'rtl':'ltr'; }
+  setF(k,v){ this.setState(s=>({ form:{...s.form,[k]:v}, errors:{...s.errors,[k]:undefined} })); }
+  submit(){
+    const ar=this.state.lang==='ar'; const f=this.state.form; const e={};
+    const req=ar?'مطلوب':'Required';
+    if(!f.name.trim()) e.name=req;
+    if(!f.email.trim()) e.email=req; else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email)) e.email=ar?'بريد غير صحيح':'Invalid email';
+    if(!f.message.trim()) e.message=req;
+    this.setState({errors:e});
+    if(Object.keys(e).length) return;
+    this.setState({sending:true});
+    setTimeout(()=>this.setState({sending:false,sent:true}),1100);
+  }
+  renderVals(){
+    const ar = this.state.lang === 'ar';
+    const toggleLang = () => { const n=this.state.lang==='ar'?'en':'ar'; try{localStorage.setItem('nutridoc-lang',n);}catch(e){} this.applyLang(n); this.setState({lang:n}); };
+    const f=this.state.form, errs=this.state.errors;
+    const inputStyle='border:1px solid #D7E8D9;border-radius:11px;padding:12px 14px;font-size:15px;font-family:inherit;outline:none;background:#fff;color:#0F2417;width:100%';
+    const areaStyle=inputStyle+';resize:vertical;line-height:1.5';
+    const errStyle='font-size:12.5px;color:#C0392B;min-height:1px;font-weight:600';
+    const mail='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
+    const phone='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>';
+    const pin='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 22s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+    const subjectOpts=[{v:'general',en:'General Inquiry',ar:'استفسار عام'},{v:'consult',en:'Nutrition Consultation',ar:'استشارة تغذية'},{v:'media',en:'Media',ar:'إعلام'},{v:'partnership',en:'Partnership',ar:'شراكة'}].map(o=>({v:o.v,label:ar?o.ar:o.en}));
+    return {
+      lang:this.state.lang, toggleLang,
+      eyebrow: ar?'تواصل':'Get in touch',
+      h1: ar?'تواصل مع د. كريم':'Contact Dr. Karim',
+      intro: ar?'أسئلة، استشارات، أو استفسارات إعلامية — يسعدنا أن نسمع منك.':'Questions, consultations, or media inquiries — we\u2019d love to hear from you.',
+      infoCards:[
+        { icon:mail, label: ar?'البريد الإلكتروني':'Email', value:'karimeltaher640@gmail.com', href:'mailto:karimeltaher640@gmail.com', dir:'ltr' },
+        { icon:phone, label: ar?'الهاتف':'Phone', value:'+966 54 993 0730', href:'tel:+966549930730', dir:'ltr' },
+        { icon:pin, label: ar?'الموقع':'Location', value: ar?'الرياض، العليا، السعودية':'Riyadh, Olaya, KSA', href:'#', dir:ar?'rtl':'ltr' },
+      ],
+      followLabel: ar?'تابعنا':'Follow us',
+      socials:[
+        { name:'Instagram', glyph:'⊚', href:'https://instagram.com/dr.karimeltaher' },
+        { name:'TikTok', glyph:'♪', href:'https://tiktok.com/@dr.karimeltaher' },
+        { name:'YouTube', glyph:'▶', href:'https://youtube.com/@nutridoc' },
+        { name:'Facebook', glyph:'f', href:'https://facebook.com/nutridoc' },
+      ],
+      showForm: !this.state.sent, sent:this.state.sent, sending:this.state.sending,
+      inputStyle, areaStyle, errStyle,
+      L:{ name: ar?'الاسم':'Name', email: ar?'البريد الإلكتروني':'Email', phone: ar?'الهاتف (اختياري)':'Phone (optional)', subject: ar?'الموضوع':'Subject', message: ar?'الرسالة':'Message' },
+      f:{ name:f.name, email:f.email, phone:f.phone, subject:f.subject, message:f.message },
+      on:{ name:e=>this.setF('name',e.target.value), email:e=>this.setF('email',e.target.value), phone:e=>this.setF('phone',e.target.value), subject:e=>this.setF('subject',e.target.value), message:e=>this.setF('message',e.target.value) },
+      E:{ name:errs.name||'', email:errs.email||'', message:errs.message||'' },
+      subjectOpts,
+      submit:()=>this.submit(),
+      submitStyle:'width:100%;margin-top:22px;background:#1B5E20;color:#fff;border:none;font-family:inherit;cursor:pointer;font-weight:700;font-size:16px;padding:15px;border-radius:12px',
+      submitLabel: this.state.sending ? (ar?'جارٍ الإرسال...':'Sending...') : (ar?'إرسال الرسالة':'Send Message'),
+      sentTitle: ar?'تم إرسال رسالتك!':'Message Sent!',
+      sentText: ar?'شكراً لتواصلك. سيرد عليك د. كريم في أقرب وقت.':'Thanks for reaching out. Dr. Karim will get back to you shortly.',
+    };
+  }
+}
+</script>
+</body>
+</html>

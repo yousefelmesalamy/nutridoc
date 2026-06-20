@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Learn about Dr. Karim Eltaher, SCFHS-licensed Clinical Pharmacist and Certified Nutrition Expert with 5+ years of experience and founder of NutriDoc in Riyadh.">
+  <meta name="keywords" content="Dr Karim Eltaher, clinical pharmacist Riyadh, certified nutrition expert, SCFHS licensed, NutriDoc founder">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="About Dr. Karim Eltaher | Clinical Pharmacist & Nutrition Expert — NutriDoc">
+  <meta property="og:type" content="profile">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Karim Eltaher","jobTitle":"Clinical Pharmacist & Certified Nutrition Expert","worksFor":{"@type":"Organization","name":"NutriDoc"},"alumniOf":"Cairo University — Bachelor of Clinical Pharmacy (2015–2020)","knowsAbout":["Nutrition","Clinical Pharmacy","Weight Management","Drug Interactions"],"hasCredential":["SCFHS License No. 1401469300","Ministry of Health Egypt License No. 272226","Leeds Training College — Nutrition & Obesity Management"],"address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressCountry":"SA"}}</script>
+  <style>
+    *{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    @media (max-width:880px){.nd-h1{font-size:42px !important;}.nd-2col{grid-template-columns:1fr !important;}.nd-3col{grid-template-columns:1fr !important;}.nd-2col-c{grid-template-columns:1fr !important;text-align:center;}}
+    @media (max-width:560px){.nd-h1{font-size:34px !important;}.nd-sec{padding-left:20px !important;padding-right:20px !important;}.nd-skills{grid-template-columns:1fr 1fr !important;}}
+  </style>
+</helmet>
+<div style="font-family:'Plus Jakarta Sans','Tajawal',sans-serif;color:#0F2417;background:#fff;overflow-x:hidden">
+  <dc-import name="NutriDocNav" active="about" lang="{{ lang }}" onToggleLang="{{ toggleLang }}" hint-size="100%,74px"></dc-import>
+
+  <main>
+    <!-- HERO -->
+    <section style="background:#F7FAF7;border-bottom:1px solid #E8F0E9">
+      <div class="nd-sec nd-2col-c" style="max-width:1100px;margin:0 auto;padding:80px 28px;display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center">
+        <div style="display:flex;justify-content:center">
+          <div style="width:260px;height:260px;border-radius:50%;border:6px solid #A5D6A7;background:linear-gradient(150deg,#E8F4E9,#CDE7CF);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 50px rgba(27,94,32,.16)">
+            <svg width="110" height="110" viewBox="0 0 24 24" fill="#66BB6A"><circle cx="12" cy="8" r="4.2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>
+          </div>
+        </div>
+        <div>
+          <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E7D32">{{ heroEyebrow }}</span>
+          <h1 class="nd-h1" style="font-family:'Newsreader',serif;font-weight:500;font-size:50px;line-height:1.08;margin:12px 0 8px;letter-spacing:-.02em">{{ name }}</h1>
+          <p style="font-size:19px;color:#2E7D32;font-weight:600;margin:0 0 22px">{{ title }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <sc-for list="{{ credentials }}" as="c" hint-placeholder-count="3">
+              <span style="display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #D7E8D9;color:#1B5E20;font-size:13.5px;font-weight:600;padding:9px 15px;border-radius:999px"><span style="color:#2E7D32">✓</span>{{ c }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="nd-sec" style="max-width:820px;margin:0 auto;padding:80px 28px 60px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E7D32">{{ summaryEyebrow }}</span>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:36px;margin:12px 0 20px;letter-spacing:-.02em">{{ summaryH2 }}</h2>
+      <p style="font-size:18px;line-height:1.8;color:#445249;margin:0">{{ summary }}</p>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section style="background:#0F2417;color:#fff">
+      <div class="nd-sec" style="max-width:1100px;margin:0 auto;padding:84px 28px">
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:36px;margin:0 0 44px;letter-spacing:-.02em">{{ achH2 }}</h2>
+        <div class="nd-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <sc-for list="{{ achievements }}" as="a" hint-placeholder-count="4">
+            <div style="display:flex;gap:18px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:24px">
+              <span style="font-family:'Newsreader',serif;font-size:30px;color:#66BB6A;font-weight:600;flex:none;line-height:1">{{ a.stat }}</span>
+              <p style="margin:0;font-size:15.5px;line-height:1.6;color:#C7DACA">{{ a.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & CERTS -->
+    <section class="nd-sec" style="max-width:1100px;margin:0 auto;padding:84px 28px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E7D32">{{ eduEyebrow }}</span>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:36px;margin:12px 0 36px;letter-spacing:-.02em">{{ eduH2 }}</h2>
+      <div class="nd-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <sc-for list="{{ education }}" as="e" hint-placeholder-count="3">
+          <div style="border:1px solid #E2EBE3;border-radius:16px;padding:26px;background:#F7FAF7">
+            <div style="font-size:13px;color:#7A8A7E;font-weight:600;margin-bottom:6px">{{ e.years }}</div>
+            <h3 style="font-size:18px;font-weight:700;margin:0 0 6px;color:#0F2417">{{ e.title }}</h3>
+            <p style="margin:0;font-size:14.5px;color:#5C6E61;line-height:1.6">{{ e.detail }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section style="background:#F7FAF7;border-top:1px solid #E8F0E9">
+      <div class="nd-sec" style="max-width:820px;margin:0 auto;padding:84px 28px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E7D32">{{ expEyebrow }}</span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:36px;margin:12px 0 40px;letter-spacing:-.02em">{{ expH2 }}</h2>
+        <div style="display:flex;flex-direction:column;gap:0;border-inline-start:2px solid #CDE3CD;padding-inline-start:28px">
+          <sc-for list="{{ experience }}" as="x" hint-placeholder-count="3">
+            <div style="position:relative;padding-bottom:34px">
+              <span style="position:absolute;inset-inline-start:-37px;top:4px;width:16px;height:16px;border-radius:50%;background:#2E7D32;border:3px solid #fff;box-shadow:0 0 0 2px #CDE3CD"></span>
+              <div style="font-size:13px;color:#2E7D32;font-weight:700;margin-bottom:4px">{{ x.period }}</div>
+              <h3 style="font-size:19px;font-weight:700;margin:0 0 4px">{{ x.role }}</h3>
+              <div style="font-size:15px;color:#5C6E61">{{ x.org }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="nd-sec" style="max-width:1100px;margin:0 auto;padding:84px 28px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E7D32">{{ skillsEyebrow }}</span>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:36px;margin:12px 0 32px;letter-spacing:-.02em">{{ skillsH2 }}</h2>
+      <div class="nd-skills" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <sc-for list="{{ skills }}" as="s" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:10px;border:1px solid #E2EBE3;border-radius:12px;padding:16px 18px;font-size:15px;font-weight:600;color:#2C3A30"><span style="width:8px;height:8px;border-radius:50%;background:#66BB6A;flex:none"></span>{{ s }}</div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- SOCIAL CTA -->
+    <section style="background:linear-gradient(120deg,#1B5E20,#2E7D32)">
+      <div class="nd-sec" style="max-width:820px;margin:0 auto;padding:72px 28px;text-align:center">
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:38px;color:#fff;margin:0 0 14px;letter-spacing:-.02em">{{ followH2 }}</h2>
+        <p style="font-size:17px;color:#D6E8D8;margin:0 0 28px">{{ followSub }}</p>
+        <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+            <a href="{{ s.href }}" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;font-weight:700;font-size:15px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:22px">{{ s.glyph }}</span>{{ s.handle }}</a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="NutriDocFooter" lang="{{ lang }}" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: 'en' };
+  componentDidMount(){ let l='en'; try{l=localStorage.getItem('nutridoc-lang')||'en';}catch(e){} this.applyLang(l); if(l!==this.state.lang) this.setState({lang:l}); }
+  applyLang(l){ document.documentElement.lang=l; document.documentElement.dir = l==='ar'?'rtl':'ltr'; }
+  renderVals(){
+    const ar = this.state.lang === 'ar';
+    const toggleLang = () => { const n=this.state.lang==='ar'?'en':'ar'; try{localStorage.setItem('nutridoc-lang',n);}catch(e){} this.applyLang(n); this.setState({lang:n}); };
+    return {
+      lang: this.state.lang, toggleLang,
+      heroEyebrow: ar?'تعرّف على خبيرك':'Meet your expert',
+      name: ar?'د. كريم الطاهر':'Dr. Karim Eltaher',
+      title: ar?'صيدلي إكلينيكي وخبير تغذية معتمد':'Clinical Pharmacist & Certified Nutrition Expert',
+      credentials: ar?['مرخّص من الهيئة السعودية (SCFHS)','خبير تغذية معتمد (المملكة المتحدة)','صيدلي إكلينيكي']:['SCFHS Licensed','Certified Nutrition Expert (UK)','Clinical Pharmacist'],
+      summaryEyebrow: ar?'نبذة':'Professional summary',
+      summaryH2: ar?'علمٌ دقيق، رعايةٌ دافئة':'Precision Science, Warm Care',
+      summary: ar?'يجمع د. كريم الطاهر بين خمس سنوات من الخبرة الإكلينيكية في الصيدلة وشهادة معتمدة في التغذية وإدارة السمنة من المملكة المتحدة. بصفته مؤسس نوتري دوك، يبني خططاً غذائية مبنية على الأدلة تأخذ في الاعتبار أدويتك وحالتك الصحية ونمط حياتك — لا حلولاً عامة، بل خططاً مصممة لك أنت.':'Dr. Karim Eltaher combines five years of clinical pharmacy experience with a certified qualification in Nutrition & Obesity Management from the UK. As the founder of NutriDoc, he builds evidence-based nutrition plans that account for your medications, medical conditions, and lifestyle — not generic templates, but plans designed for you.',
+      achEyebrow:'', achH2: ar?'إنجازات رئيسية':'Key Achievements',
+      achievements: [
+        { stat:'20k+', text: ar?'مجتمع متنامٍ على تيك توك يثق بمحتواه التوعوي.':'A growing TikTok community trusting his educational content.' },
+        { stat:'300k+', text: ar?'مشاهدة على يوتيوب لمحتوى تغذوي مبني على العلم.':'YouTube views on science-based nutrition content.' },
+        { stat:'5+', text: ar?'سنوات من الخبرة الإكلينيكية بين الصيدلة والتغذية.':'Years of clinical experience across pharmacy and nutrition.' },
+        { stat:'100s', text: ar?'من العملاء حققوا أهدافهم الصحية بخطط مخصصة.':'Of clients who reached their health goals with custom plans.' },
+      ],
+      eduEyebrow: ar?'المؤهلات':'Credentials',
+      eduH2: ar?'التعليم والشهادات':'Education & Certifications',
+      education: [
+        { years:'2015 – 2020', title: ar?'بكالوريوس الصيدلة الإكلينيكية':'Bachelor of Clinical Pharmacy', detail: ar?'جامعة القاهرة':'Cairo University' },
+        { years: ar?'منذ نوفمبر ٢٠٢٢':'Since Nov 2022', title: ar?'ترخيص الهيئة السعودية للتخصصات الصحية':'SCFHS License', detail:'No. 1401469300' },
+        { years: ar?'منذ نوفمبر ٢٠٢٠':'Since Nov 2020', title: ar?'ترخيص وزارة الصحة المصرية':'MOH Egypt License', detail:'No. 272226' },
+        { years:'120 CH', title: ar?'التغذية وإدارة السمنة':'Nutrition & Obesity Management', detail: ar?'كلية ليدز للتدريب (المملكة المتحدة)':'Leeds Training College (UK)' },
+      ],
+      expEyebrow: ar?'المسيرة المهنية':'Career',
+      expH2: ar?'الخبرات العملية':'Work Experience',
+      experience: [
+        { period: ar?'نوفمبر ٢٠٢٢ – الآن':'Nov 2022 – Present', role: ar?'صيدلي إكلينيكي':'Clinical Pharmacist', org: ar?'شركة ليمون الطبية':'Lemon Medical Company' },
+        { period: ar?'يناير ٢٠٢١ – أكتوبر ٢٠٢٢':'Jan 2021 – Oct 2022', role: ar?'صيدلي':'Pharmacist', org: ar?'سلسلة صيدليات د. أسامة الطيبي':'Dr. Osama Altaieby Pharmacy Chain' },
+        { period: ar?'٢٠٢٠ – الآن':'2020 – Present', role: ar?'المؤسس وخبير التغذية':'Founder & Nutrition Expert', org:'NutriDoc' },
+      ],
+      skillsEyebrow: ar?'المهارات':'Expertise',
+      skillsH2: ar?'مجالات الخبرة':'Skills & Expertise',
+      skills: ar?['الصيدلة الإكلينيكية','تخطيط التغذية','إدارة الوزن','تفاعلات الدواء والغذاء','التغذية لمرضى الأمراض المزمنة','إدارة السمنة','التواصل والتثقيف','صناعة المحتوى','المتابعة والتحفيز']:['Clinical Pharmacy','Nutrition Planning','Weight Management','Drug–Food Interactions','Disease-Specific Nutrition','Obesity Management','Patient Education','Content Creation','Coaching & Motivation'],
+      followH2: ar?'تابع نوتري دوك':'Follow NutriDoc',
+      followSub: ar?'نصائح يومية مبنية على العلم عبر منصاتك المفضلة.':'Daily science-based tips across your favorite platforms.',
+      socials: [
+        { glyph:'⊚', handle:'Instagram', href:'https://instagram.com/dr.karimeltaher' },
+        { glyph:'♪', handle:'TikTok', href:'https://tiktok.com/@dr.karimeltaher' },
+        { glyph:'▶', handle:'YouTube', href:'https://youtube.com/@nutridoc' },
+        { glyph:'f', handle:'Facebook', href:'https://facebook.com/nutridoc' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

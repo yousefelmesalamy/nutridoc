@@ -1,0 +1,221 @@
+/* NutriDoc admin dashboard enhancements */
+
+.nd-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e9ee;
+}
+
+.nd-welcome h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2d2a;
+}
+
+.nd-welcome p {
+  margin: .15rem 0 0;
+  color: #6c7a78;
+  font-size: .9rem;
+}
+
+.nd-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .nd-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .nd-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nd-stat-card {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  background: #fff;
+  border-radius: .6rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid #e9edf0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nd-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 24, 40, .08);
+  border-color: #d7dee2;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nd-stat-icon {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: .55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: #fff;
+}
+
+.nd-stat-icon.color-primary { background: #2c7a7b; }
+.nd-stat-icon.color-success { background: #2e8b57; }
+.nd-stat-icon.color-danger  { background: #d64545; }
+.nd-stat-icon.color-warning { background: #d99a2b; }
+.nd-stat-icon.color-secondary { background: #9aa5a3; }
+
+.nd-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #1f2d2a;
+}
+
+.nd-stat-label {
+  font-size: .8rem;
+  color: #6c7a78;
+  font-weight: 500;
+}
+
+.nd-panel {
+  background: #fff;
+  border-radius: .6rem;
+  border: 1px solid #e9edf0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nd-panel-header {
+  padding: .9rem 1.1rem;
+  border-bottom: 1px solid #eef1f3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nd-panel-header h3 {
+  margin: 0;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #1f2d2a;
+}
+
+.nd-panel-body {
+  flex: 1 1 auto;
+}
+
+.nd-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .6rem;
+  padding: .7rem 1.1rem;
+  border-bottom: 1px solid #f3f5f6;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nd-item:last-child {
+  border-bottom: none;
+}
+
+.nd-item:hover {
+  background: #f8fafa;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nd-item-main {
+  min-width: 0;
+}
+
+.nd-item-title {
+  font-size: .87rem;
+  font-weight: 600;
+  color: #1f2d2a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nd-item-sub {
+  font-size: .76rem;
+  color: #8b9694;
+  margin-top: .1rem;
+}
+
+.nd-item-time {
+  font-size: .72rem;
+  color: #a3acaa;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-top: .15rem;
+}
+
+.nd-panel-footer {
+  padding: .55rem 1.1rem;
+  border-top: 1px solid #eef1f3;
+  text-align: center;
+}
+
+.nd-panel-footer a {
+  font-size: .8rem;
+  font-weight: 600;
+  color: #2e8b57;
+}
+
+.nd-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: 2.1rem 1rem;
+  color: #b6bdbb;
+  text-align: center;
+}
+
+.nd-empty i {
+  font-size: 1.6rem;
+}
+
+.nd-empty span {
+  font-size: .82rem;
+}
+
+.nd-badge {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  padding: .15rem .45rem;
+  border-radius: .35rem;
+}
+
+.nd-badge.status-new,
+.nd-badge.status-unread { background: #fdeceb; color: #c0392b; }
+.nd-badge.status-contacted { background: #fdf3e0; color: #b5790f; }
+.nd-badge.status-closed,
+.nd-badge.status-read { background: #eaf3ee; color: #2e7d52; }

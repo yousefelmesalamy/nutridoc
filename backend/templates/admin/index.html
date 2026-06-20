@@ -1,68 +1,120 @@
 {% extends "admin/index.html" %}
+{% load i18n %}
 
 {% block content %}
-<div class="row">
-  {% for stat in dashboard_stats %}
-  <div class="col-lg-3 col-6">
-    <div class="small-box bg-success">
-      <div class="inner">
-        <h3>{{ stat.value }}</h3>
-        <p>{{ stat.label }}</p>
-      </div>
-      <div class="icon">
-        <i class="{{ stat.icon }}"></i>
-      </div>
-    </div>
+<div class="nd-welcome">
+  <div>
+    <h1>{% trans "Welcome back" %}{% if request.user.first_name %}, {{ request.user.first_name }}{% endif %}</h1>
+    <p>{% now "l, F j, Y" %} &middot; here's what's happening across NutriDoc today.</p>
   </div>
+</div>
+
+<div class="nd-stats">
+  {% for stat in dashboard_stats %}
+  <a class="nd-stat-card" href="{% url stat.url %}">
+    <span class="nd-stat-icon color-{{ stat.color }}"><i class="{{ stat.icon }}"></i></span>
+    <span>
+      <span class="nd-stat-value">{{ stat.value }}</span><br>
+      <span class="nd-stat-label">{{ stat.label }}</span>
+    </span>
+  </a>
   {% endfor %}
 </div>
 
 <div class="row">
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Recent Posts</h3>
+  <div class="col-lg-4 mb-4">
+    <div class="nd-panel">
+      <div class="nd-panel-header">
+        <h3><i class="fas fa-book mr-1 text-muted"></i> {% trans "Recent Posts" %}</h3>
       </div>
-      <div class="card-body p-0">
-        <ul class="list-group list-group-flush">
-          {% for post in dashboard_recent.posts %}
-          <li class="list-group-item">{{ post.title_en }}</li>
-          {% empty %}
-          <li class="list-group-item text-muted">No posts yet</li>
-          {% endfor %}
-        </ul>
+      <div class="nd-panel-body">
+        {% for post in dashboard_recent.posts %}
+        <a class="nd-item" href="{% url 'admin:blog_blogpost_change' post.pk %}">
+          <span class="nd-item-main">
+            <span class="nd-item-title">{{ post.title_en }}</span><br>
+            <span class="nd-item-sub">
+              {% if post.is_published %}
+                <span class="nd-badge status-closed">{% trans "Published" %}</span>
+              {% else %}
+                <span class="nd-badge status-new">{% trans "Draft" %}</span>
+              {% endif %}
+            </span>
+          </span>
+          <span class="nd-item-time">{{ post.created_at|timesince }} {% trans "ago" %}</span>
+        </a>
+        {% empty %}
+        <div class="nd-empty">
+          <i class="fas fa-book"></i>
+          <span>{% trans "No posts yet — write your first one." %}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="nd-panel-footer">
+        <a href="{% url 'admin:blog_blogpost_changelist' %}">{% trans "View all posts" %} &rarr;</a>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Recent Plan Requests</h3>
+
+  <div class="col-lg-4 mb-4">
+    <div class="nd-panel">
+      <div class="nd-panel-header">
+        <h3><i class="fas fa-clipboard-list mr-1 text-muted"></i> {% trans "Recent Plan Requests" %}</h3>
       </div>
-      <div class="card-body p-0">
-        <ul class="list-group list-group-flush">
-          {% for plan_request in dashboard_recent.plan_requests %}
-          <li class="list-group-item">{{ plan_request.name }} &mdash; {{ plan_request.get_plan_display }}</li>
-          {% empty %}
-          <li class="list-group-item text-muted">No plan requests yet</li>
-          {% endfor %}
-        </ul>
+      <div class="nd-panel-body">
+        {% for plan_request in dashboard_recent.plan_requests %}
+        <a class="nd-item" href="{% url 'admin:leads_planrequest_change' plan_request.pk %}">
+          <span class="nd-item-main">
+            <span class="nd-item-title">{{ plan_request.name }}</span><br>
+            <span class="nd-item-sub">
+              {{ plan_request.get_plan_display }} &middot;
+              <span class="nd-badge status-{{ plan_request.status }}">{{ plan_request.get_status_display }}</span>
+            </span>
+          </span>
+          <span class="nd-item-time">{{ plan_request.created_at|timesince }} {% trans "ago" %}</span>
+        </a>
+        {% empty %}
+        <div class="nd-empty">
+          <i class="fas fa-clipboard-list"></i>
+          <span>{% trans "No plan requests yet." %}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="nd-panel-footer">
+        <a href="{% url 'admin:leads_planrequest_changelist' %}">{% trans "View all requests" %} &rarr;</a>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Recent Contact Submissions</h3>
+
+  <div class="col-lg-4 mb-4">
+    <div class="nd-panel">
+      <div class="nd-panel-header">
+        <h3><i class="fas fa-envelope mr-1 text-muted"></i> {% trans "Recent Contact Submissions" %}</h3>
       </div>
-      <div class="card-body p-0">
-        <ul class="list-group list-group-flush">
-          {% for contact in dashboard_recent.contacts %}
-          <li class="list-group-item">{{ contact.name }} &mdash; {{ contact.get_subject_display }}</li>
-          {% empty %}
-          <li class="list-group-item text-muted">No contact submissions yet</li>
-          {% endfor %}
-        </ul>
+      <div class="nd-panel-body">
+        {% for contact in dashboard_recent.contacts %}
+        <a class="nd-item" href="{% url 'admin:leads_contactsubmission_change' contact.pk %}">
+          <span class="nd-item-main">
+            <span class="nd-item-title">{{ contact.name }}</span><br>
+            <span class="nd-item-sub">
+              {{ contact.get_subject_display }} &middot;
+              {% if contact.is_read %}
+                <span class="nd-badge status-read">{% trans "Read" %}</span>
+              {% else %}
+                <span class="nd-badge status-unread">{% trans "Unread" %}</span>
+              {% endif %}
+            </span>
+          </span>
+          <span class="nd-item-time">{{ contact.created_at|timesince }} {% trans "ago" %}</span>
+        </a>
+        {% empty %}
+        <div class="nd-empty">
+          <i class="fas fa-envelope"></i>
+          <span>{% trans "No contact submissions yet." %}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="nd-panel-footer">
+        <a href="{% url 'admin:leads_contactsubmission_changelist' %}">{% trans "View all submissions" %} &rarr;</a>
       </div>
     </div>
   </div>

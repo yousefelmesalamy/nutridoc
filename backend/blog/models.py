@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Category(models.Model):
@@ -20,8 +21,8 @@ class BlogPost(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="posts")
     excerpt_en = models.TextField()
     excerpt_ar = models.TextField()
-    body_en = models.TextField()
-    body_ar = models.TextField()
+    body_en = CKEditor5Field(config_name="default")
+    body_ar = CKEditor5Field(config_name="default")
     author = models.CharField(max_length=120, default="Dr. Karim Eltaher")
     cover_image_url = models.URLField(blank=True)
     read_time_minutes = models.PositiveIntegerField()

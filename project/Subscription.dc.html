@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Subscribe to a science-backed, personalized nutrition plan crafted by Dr. Karim Eltaher. Choose the plan that fits your goals — Basic, Pro, or Premium.">
+  <meta name="keywords" content="personalized nutrition plan, online dietitian Riyadh, weight loss plan subscription, NutriDoc plan">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Get Your Personalized Nutrition Plan | NutriDoc">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"NutriDoc Personalized Nutrition Plan","provider":{"@type":"Person","name":"Dr. Karim Eltaher"},"serviceType":"Nutrition Consultation","description":"Custom nutrition plans designed by a certified clinical pharmacist","offers":[{"@type":"Offer","name":"Basic","price":"99","priceCurrency":"SAR"},{"@type":"Offer","name":"Pro","price":"199","priceCurrency":"SAR"},{"@type":"Offer","name":"Premium","price":"349","priceCurrency":"SAR"}]}</script>
+  <style>*{box-sizing:border-box;} html,body{margin:0;padding:0;}
+    @media (max-width:880px){.nd-h1{font-size:40px !important;}.nd-3col{grid-template-columns:1fr !important;}.nd-2f{grid-template-columns:1fr !important;}}
+    @media (max-width:560px){.nd-h1{font-size:32px !important;}.nd-sec{padding-left:20px !important;padding-right:20px !important;}}
+  </style>
+</helmet>
+<div style="font-family:'Plus Jakarta Sans','Tajawal',sans-serif;color:#0F2417;background:#fff;overflow-x:hidden">
+  <dc-import name="NutriDocNav" active="services" lang="{{ lang }}" onToggleLang="{{ toggleLang }}" hint-size="100%,74px"></dc-import>
+  <main>
+    <section style="background:#F7FAF7;border-bottom:1px solid #E8F0E9">
+      <div class="nd-sec" style="max-width:820px;margin:0 auto;padding:78px 28px 60px;text-align:center">
+        <span style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E7D32">{{ eyebrow }}</span>
+        <h1 class="nd-h1" style="font-family:'Newsreader',serif;font-weight:500;font-size:50px;line-height:1.08;margin:14px 0 14px;letter-spacing:-.02em">{{ h1 }}</h1>
+        <p style="font-size:18px;color:#5C6E61;margin:0 auto;max-width:52ch">{{ intro }}</p>
+      </div>
+    </section>
+
+    <!-- PLAN CARDS -->
+    <section class="nd-sec" style="max-width:1100px;margin:0 auto;padding:64px 28px 30px">
+      <div class="nd-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+          <div onClick="{{ p.onSelect }}" style="{{ p.cardStyle }}" style-hover="border-color:#2E7D32">
+            <sc-if value="{{ p.popular }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#1B5E20;color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:999px">{{ popularLabel }}</span></sc-if>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <h3 style="font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:{{ p.accent }};margin:0">{{ p.name }}</h3>
+              <span style="{{ p.radioStyle }}">{{ p.radioMark }}</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:18px"><span style="font-family:'Newsreader',serif;font-size:44px;font-weight:600;color:#0F2417">{{ p.price }}</span><span style="font-size:14px;color:#7A8A7E">{{ p.period }}</span></div>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px">
+              <sc-for list="{{ p.features }}" as="f" hint-placeholder-count="5">
+                <li style="display:flex;gap:10px;align-items:center;font-size:14.5px;color:{{ f.color }}"><span style="font-weight:700;flex:none;color:{{ f.markColor }}">{{ f.mark }}</span>{{ f.label }}</li>
+              </sc-for>
+            </ul>
+          </div>
+        </sc-for>
+      </div>
+      <p style="text-align:center;margin:26px 0 0;font-size:14.5px;color:#7A8A7E">{{ selectedNote }}</p>
+    </section>
+
+    <!-- FORM -->
+    <section class="nd-sec" style="max-width:760px;margin:0 auto;padding:40px 28px 96px">
+      <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+        <div style="background:#fff;border:1px solid #E2EBE3;border-radius:24px;padding:40px;box-shadow:0 14px 44px rgba(15,36,23,.07)">
+          <!-- STEPPER -->
+          <div style="display:flex;align-items:center;gap:0;margin-bottom:34px">
+            <sc-for list="{{ stepper }}" as="s" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;flex:1">
+                <div style="display:flex;align-items:center;gap:10px"><span style="{{ s.dot }}">{{ s.num }}</span><span style="font-size:13.5px;font-weight:600;color:{{ s.txtColor }}">{{ s.label }}</span></div>
+                <sc-if value="{{ s.line }}" hint-placeholder-val="{{ true }}"><span style="flex:1;height:2px;background:{{ s.lineColor }};margin:0 12px"></span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- STEP 1 -->
+          <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:26px;margin:0 0 20px">{{ step1Title }}</h2>
+              <div class="nd-2f" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.fullName }}</span><input value="{{ f.fullName }}" onInput="{{ on.fullName }}" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.fullName }}</span></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.email }}</span><input type="email" value="{{ f.email }}" onInput="{{ on.email }}" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.email }}</span></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.phone }}</span><input value="{{ f.phone }}" onInput="{{ on.phone }}" dir="ltr" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.phone }}</span></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.age }}</span><input type="number" value="{{ f.age }}" onInput="{{ on.age }}" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.age }}</span></label>
+              </div>
+              <div style="margin-top:18px">
+                <span style="font-size:13.5px;font-weight:600;color:#33423A;display:block;margin-bottom:9px">{{ L.gender }}</span>
+                <div style="display:flex;gap:10px">
+                  <sc-for list="{{ genderOpts }}" as="g" hint-placeholder-count="2"><button onClick="{{ g.onClick }}" style="{{ g.style }}">{{ g.label }}</button></sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- STEP 2 -->
+          <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:26px;margin:0 0 20px">{{ step2Title }}</h2>
+              <div class="nd-2f" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px">
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.height }}</span><input type="number" value="{{ f.height }}" onInput="{{ on.height }}" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.height }}</span></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.currentWeight }}</span><input type="number" value="{{ f.currentWeight }}" onInput="{{ on.currentWeight }}" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.currentWeight }}</span></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.targetWeight }}</span><input type="number" value="{{ f.targetWeight }}" onInput="{{ on.targetWeight }}" style="{{ inputStyle }}" /><span style="{{ errStyle }}">{{ E.targetWeight }}</span></label>
+              </div>
+              <div class="nd-2f" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.goal }}</span><select value="{{ f.goal }}" onChange="{{ on.goal }}" style="{{ inputStyle }}"><sc-for list="{{ goalOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.activity }}</span><select value="{{ f.activity }}" onChange="{{ on.activity }}" style="{{ inputStyle }}"><sc-for list="{{ activityOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.v }}">{{ o.label }}</option></sc-for></select></label>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- STEP 3 -->
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:26px;margin:0 0 6px">{{ step3Title }}</h2>
+              <p style="font-size:14px;color:#7A8A7E;margin:0 0 20px">{{ step3Sub }}</p>
+              <div style="display:flex;flex-direction:column;gap:18px">
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.medical }}</span><textarea value="{{ f.medical }}" onInput="{{ on.medical }}" rows="2" style="{{ areaStyle }}"></textarea></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.allergies }}</span><textarea value="{{ f.allergies }}" onInput="{{ on.allergies }}" rows="2" style="{{ areaStyle }}"></textarea></label>
+                <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:13.5px;font-weight:600;color:#33423A">{{ L.medications }} <span style="color:#2E7D32;font-weight:700">{{ L.medsHint }}</span></span><textarea value="{{ f.medications }}" onInput="{{ on.medications }}" rows="2" style="{{ areaStyle }}"></textarea></label>
+                <label style="display:flex;gap:11px;align-items:flex-start;cursor:pointer"><input type="checkbox" checked="{{ f.agree }}" onChange="{{ on.agree }}" style="margin-top:3px;width:18px;height:18px;accent-color:#1B5E20;flex:none" /><span style="font-size:14px;color:#445249;line-height:1.5">{{ L.agree }}</span></label>
+                <span style="{{ errStyle }}">{{ E.agree }}</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- NAV BUTTONS -->
+          <div style="display:flex;justify-content:space-between;gap:12px;margin-top:30px">
+            <button onClick="{{ goBack }}" style="{{ backStyle }}">{{ backLabel }}</button>
+            <button onClick="{{ goNext }}" style="background:#1B5E20;color:#fff;border:none;font-family:inherit;cursor:pointer;font-weight:700;font-size:15px;padding:14px 28px;border-radius:12px" style-hover="background:#2E7D32">{{ nextLabel }}</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- SUCCESS -->
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;background:#fff;border:1px solid #E2EBE3;border-radius:24px;padding:56px 40px;box-shadow:0 14px 44px rgba(15,36,23,.07)">
+          <div style="width:76px;height:76px;border-radius:50%;background:#EAF4EA;display:flex;align-items:center;justify-content:center;margin:0 auto 22px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:600;font-size:32px;margin:0 0 12px">{{ successTitle }}</h2>
+          <p style="font-size:17px;color:#5C6E61;margin:0 auto 28px;max-width:44ch;line-height:1.6">{{ successText }}</p>
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#1B5E20;color:#fff;text-decoration:none;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px" style-hover="background:#2E7D32">💬 {{ successBtn }}</a>
+        </div>
+      </sc-if>
+    </section>
+  </main>
+  <dc-import name="NutriDocFooter" lang="{{ lang }}" hint-size="100%,420px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang:'en', selected:'pro', step:1, submitted:false, errors:{},
+    form:{ fullName:'', email:'', phone:'', age:'', gender:'', height:'', currentWeight:'', targetWeight:'', goal:'lose_weight', activity:'moderate', medical:'', allergies:'', medications:'', agree:false } };
+  componentDidMount(){ let l='en'; try{l=localStorage.getItem('nutridoc-lang')||'en';}catch(e){} this.applyLang(l); if(l!==this.state.lang) this.setState({lang:l}); }
+  applyLang(l){ document.documentElement.lang=l; document.documentElement.dir = l==='ar'?'rtl':'ltr'; }
+  setF(k,v){ this.setState(s=>({ form:{...s.form,[k]:v}, errors:{...s.errors,[k]:undefined} })); }
+  validateStep(){
+    const ar = this.state.lang==='ar'; const f=this.state.form; const e={};
+    const req = ar?'هذا الحقل مطلوب':'This field is required';
+    if(this.state.step===1){
+      if(!f.fullName.trim()) e.fullName=req;
+      if(!f.email.trim()) e.email=req; else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email)) e.email= ar?'بريد إلكتروني غير صحيح':'Invalid email address';
+      if(!f.phone.trim()) e.phone=req;
+      if(!String(f.age).trim()) e.age=req; else if(Number(f.age)<18) e.age= ar?'يجب أن يكون العمر ١٨ أو أكثر':'Must be 18 or older';
+    }
+    if(this.state.step===2){
+      if(!String(f.height).trim()) e.height=req;
+      if(!String(f.currentWeight).trim()) e.currentWeight=req;
+      if(!String(f.targetWeight).trim()) e.targetWeight=req;
+    }
+    if(this.state.step===3){ if(!f.agree) e.agree= ar?'يجب الموافقة على الشروط للمتابعة':'You must agree to the terms to continue'; }
+    this.setState({errors:e});
+    return Object.keys(e).length===0;
+  }
+  renderVals(){
+    const ar = this.state.lang === 'ar';
+    const toggleLang = () => { const n=this.state.lang==='ar'?'en':'ar'; try{localStorage.setItem('nutridoc-lang',n);}catch(e){} this.applyLang(n); this.setState({lang:n}); };
+    const f=this.state.form, errs=this.state.errors;
+    const inputStyle='border:1px solid #D7E8D9;border-radius:11px;padding:12px 14px;font-size:15px;font-family:inherit;outline:none;background:#fff;color:#0F2417;width:100%';
+    const areaStyle=inputStyle+';resize:vertical;line-height:1.5';
+    const errStyle='font-size:12.5px;color:#C0392B;min-height:1px;font-weight:600';
+    // plan matrix
+    const featDefs=[
+      { en:'Custom meal plan', ar:'خطة وجبات مخصصة', b:true,p:true,pr:true },
+      { en:'WhatsApp follow-up', ar:'متابعة عبر واتساب', b:false,p:true,pr:true },
+      { en:'Supplement guide', ar:'دليل المكملات', b:false,p:true,pr:true },
+      { en:'Monthly check-in call', ar:'مكالمة متابعة شهرية', b:false,p:false,pr:true },
+      { en:'Drug–nutrition review', ar:'مراجعة الدواء والغذاء', b:false,p:false,pr:true },
+    ];
+    const planMeta=[
+      { key:'basic', popular:false, accent:'#2E7D32', name: ar?'أساسي':'Basic', price: ar?'٩٩':'99', fld:'b' },
+      { key:'pro', popular:true, accent:'#1B5E20', name: ar?'برو':'Pro', price: ar?'١٩٩':'199', fld:'p' },
+      { key:'premium', popular:false, accent:'#2E7D32', name: ar?'بريميوم':'Premium', price: ar?'٣٤٩':'349', fld:'pr' },
+    ];
+    const plans = planMeta.map(p=>{
+      const sel = this.state.selected===p.key;
+      return {
+        name:p.name, price:p.price, period: ar?'ريال/شهر':'SAR/mo', popular:p.popular, accent:p.accent,
+        onSelect: ()=>this.setState({selected:p.key}),
+        cardStyle:'position:relative;cursor:pointer;background:#fff;border:'+(sel?'2px solid #1B5E20':'1px solid #E2EBE3')+';border-radius:22px;padding:'+(p.popular?'38px 28px 30px':'30px 28px')+';transition:.18s;box-shadow:'+(sel?'0 18px 44px rgba(27,94,32,.16)':'0 4px 16px rgba(15,36,23,.04)'),
+        radioStyle:'width:22px;height:22px;border-radius:50%;border:2px solid '+(sel?'#1B5E20':'#C9DBCB')+';background:'+(sel?'#1B5E20':'#fff')+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;flex:none',
+        radioMark: sel?'✓':'',
+        features: featDefs.map(fd=>{ const inc=fd[p.fld]; return { label: ar?fd.ar:fd.en, mark: inc?'✓':'—', markColor: inc?'#2E7D32':'#C0C9C2', color: inc?'#33423A':'#A9B4AD' }; }),
+      };
+    });
+    // stepper
+    const stepLabels = ar?['البيانات الشخصية','الجسم والأهداف','الطبية والتأكيد']:['Your details','Body & goals','Medical & confirm'];
+    const stepper = stepLabels.map((lab,i)=>{ const n=i+1; const done=this.state.step>n; const cur=this.state.step===n; return {
+      num: done?'✓':String(n), label:lab,
+      dot:'width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none;'+((done||cur)?'background:#1B5E20;color:#fff;':'background:#E2EBE3;color:#7A8A7E;'),
+      txtColor:(done||cur)?'#0F2417':'#9AA89F',
+      line: n<3, lineColor: this.state.step>n?'#1B5E20':'#E2EBE3',
+    }; });
+    const genderOpts=[{v:'male',en:'Male',ar:'ذكر'},{v:'female',en:'Female',ar:'أنثى'}].map(g=>({ label: ar?g.ar:g.en, onClick:()=>this.setF('gender',g.v),
+      style:'flex:1;font-family:inherit;cursor:pointer;font-weight:600;font-size:14.5px;padding:12px;border-radius:11px;'+(f.gender===g.v?'background:#1B5E20;color:#fff;border:1px solid #1B5E20;':'background:#fff;color:#445249;border:1px solid #D7E8D9;') }));
+    const goalOpts=[{v:'lose_weight',en:'Lose weight',ar:'فقدان الوزن'},{v:'gain_muscle',en:'Gain muscle',ar:'بناء العضلات'},{v:'maintain',en:'Maintain',ar:'المحافظة'},{v:'medical',en:'Medical / condition',ar:'حالة طبية'}].map(o=>({v:o.v,label:ar?o.ar:o.en}));
+    const activityOpts=[{v:'sedentary',en:'Sedentary',ar:'خامل'},{v:'light',en:'Lightly active',ar:'نشاط خفيف'},{v:'moderate',en:'Moderately active',ar:'نشاط متوسط'},{v:'active',en:'Active',ar:'نشط'},{v:'very_active',en:'Very active',ar:'نشط جداً'}].map(o=>({v:o.v,label:ar?o.ar:o.en}));
+    const goNext = ()=>{ if(!this.validateStep()) return; if(this.state.step<3){ this.setState(s=>({step:s.step+1})); } else { this.setState({submitted:true}); } };
+    const goBack = ()=>{ this.setState(s=>({step:Math.max(1,s.step-1), errors:{}})); };
+    const planName = planMeta.find(p=>p.key===this.state.selected).name;
+    return {
+      lang:this.state.lang, toggleLang,
+      eyebrow: ar?'الاشتراك':'Your plan',
+      h1: ar?'احصل على خطة تغذيتك المخصصة':'Get Your Personalized Nutrition Plan',
+      intro: ar?'اختر خطتك، أخبرنا عن جسمك وأهدافك، وسيصمم د. كريم خطة مبنية على العلم خصيصاً لك.':'Choose your plan, tell us about your body and goals, and Dr. Karim will craft a science-backed plan just for you.',
+      plans, popularLabel: ar?'الأكثر شيوعاً':'MOST POPULAR',
+      selectedNote: (ar?'الخطة المختارة: ':'Selected plan: ') + planName,
+      showForm: !this.state.submitted, submitted: this.state.submitted,
+      stepper,
+      isStep1:this.state.step===1, isStep2:this.state.step===2, isStep3:this.state.step===3,
+      step1Title: ar?'بياناتك الشخصية':'Your Details',
+      step2Title: ar?'جسمك وأهدافك':'Body & Goals',
+      step3Title: ar?'معلومات طبية':'Medical Information',
+      step3Sub: ar?'خلفية د. كريم في الصيدلة تجعل هذه المعلومات قيّمة جداً لخطتك.':'Dr. Karim\u2019s pharmacy background makes this information especially valuable for your plan.',
+      inputStyle, areaStyle, errStyle,
+      L:{ fullName: ar?'الاسم الكامل':'Full name', email: ar?'البريد الإلكتروني':'Email', phone: ar?'رقم الجوال':'Phone', age: ar?'العمر':'Age', gender: ar?'الجنس':'Gender',
+        height: ar?'الطول (سم)':'Height (cm)', currentWeight: ar?'الوزن الحالي (كجم)':'Current weight (kg)', targetWeight: ar?'الوزن المستهدف (كجم)':'Target weight (kg)',
+        goal: ar?'الهدف':'Goal', activity: ar?'مستوى النشاط':'Activity level',
+        medical: ar?'حالات طبية (اختياري)':'Medical conditions (optional)', allergies: ar?'حساسية غذائية (اختياري)':'Allergies (optional)',
+        medications: ar?'الأدوية الحالية':'Current medications', medsHint: ar?'(موصى به)':'(recommended)',
+        agree: ar?'أوافق على شروط الخدمة وسياسة الخصوصية الخاصة بنوتري دوك.':'I agree to NutriDoc\u2019s terms of service and privacy policy.' },
+      f:{ fullName:f.fullName, email:f.email, phone:f.phone, age:f.age, height:f.height, currentWeight:f.currentWeight, targetWeight:f.targetWeight, goal:f.goal, activity:f.activity, medical:f.medical, allergies:f.allergies, medications:f.medications, agree:f.agree },
+      on:{ fullName:e=>this.setF('fullName',e.target.value), email:e=>this.setF('email',e.target.value), phone:e=>this.setF('phone',e.target.value), age:e=>this.setF('age',e.target.value), height:e=>this.setF('height',e.target.value), currentWeight:e=>this.setF('currentWeight',e.target.value), targetWeight:e=>this.setF('targetWeight',e.target.value), goal:e=>this.setF('goal',e.target.value), activity:e=>this.setF('activity',e.target.value), medical:e=>this.setF('medical',e.target.value), allergies:e=>this.setF('allergies',e.target.value), medications:e=>this.setF('medications',e.target.value), agree:e=>this.setF('agree',e.target.checked) },
+      E:{ fullName:errs.fullName||'', email:errs.email||'', phone:errs.phone||'', age:errs.age||'', height:errs.height||'', currentWeight:errs.currentWeight||'', targetWeight:errs.targetWeight||'', agree:errs.agree||'' },
+      genderOpts, goalOpts, activityOpts,
+      goNext, goBack,
+      nextLabel: this.state.step===3 ? (ar?'إرسال الطلب':'Submit Request') : (ar?'التالي':'Next'),
+      backLabel: ar?'رجوع':'Back',
+      backStyle: this.state.step===1 ? 'visibility:hidden;font-family:inherit;padding:14px 28px' : 'background:#fff;color:#445249;border:1px solid #D7E8D9;font-family:inherit;cursor:pointer;font-weight:700;font-size:15px;padding:14px 28px;border-radius:12px',
+      successTitle: ar?'تم استلام طلبك!':'Request Received!',
+      successText: ar?'شكراً لك! سيراجع د. كريم بياناتك ويتواصل معك لتصميم خطتك. يمكنك التواصل معه مباشرة الآن عبر واتساب.':'Thank you! Dr. Karim will review your details and reach out to craft your plan. You can also message him directly now on WhatsApp.',
+      waLink:'https://wa.me/966549930730?text='+encodeURIComponent(ar?('مرحباً د. كريم، اشتركت في خطة '+planName):('Hi Dr. Karim, I just subscribed to the '+planName+' plan')),
+      successBtn: ar?'تواصل مع د. كريم':'Message Dr. Karim',
+    };
+  }
+}
+</script>
+</body>
+</html>

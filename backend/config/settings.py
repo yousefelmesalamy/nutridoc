@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'django_ckeditor_5',
     'blog',
     'leads',
 ]
@@ -121,11 +122,40 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CKEDITOR_5_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            'heading', '|',
+            'bold', 'italic', 'underline', 'strikethrough', '|',
+            'link', 'blockQuote', '|',
+            'bulletedList', 'numberedList', '|',
+            'outdent', 'indent', '|',
+            'imageUpload', 'insertTable', 'mediaEmbed', '|',
+            'undo', 'redo',
+        ],
+        'image': {
+            'toolbar': [
+                'imageTextAlternative', '|',
+                'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+            ],
+            'styles': ['alignLeft', 'alignCenter', 'alignRight'],
+        },
+        'table': {
+            'contentToolbar': ['tableColumn', 'tableRow', 'mergeTableCells'],
+        },
+    },
+}
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
@@ -153,6 +183,7 @@ JAZZMIN_SETTINGS = {
         "leads.ContactSubmission": "fas fa-envelope",
         "leads.PlanRequest": "fas fa-clipboard-list",
     },
+    "custom_css": "admin/css/dashboard.css",
 }
 
 JAZZMIN_UI_TWEAKS = {

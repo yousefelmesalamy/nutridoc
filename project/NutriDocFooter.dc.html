@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @media (max-width: 860px){ .nd-foot-grid{ grid-template-columns:1fr 1fr !important; gap:32px !important; } }
+    @media (max-width: 520px){ .nd-foot-grid{ grid-template-columns:1fr !important; } }
+  </style>
+</helmet>
+<footer style="background:#0F2417;color:#CADCCD;font-family:'Plus Jakarta Sans','Tajawal',sans-serif;padding:72px 28px 32px">
+  <div style="max-width:1240px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:44px;align-items:start" class="nd-foot-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
+          <img src="assets/nutridoc-logo.png" alt="NutriDoc logo" width="46" height="46" style="width:46px;height:46px;object-fit:contain" />
+          <span style="font-family:'Newsreader',serif;font-weight:600;font-size:23px;color:#fff">NutriDoc</span>
+        </div>
+        <p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#9DB6A2;max-width:300px">{{ blurb }}</p>
+        <div style="display:flex;gap:10px">
+          <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+            <a href="{{ s.href }}" aria-label="{{ s.name }}" target="_blank" rel="noopener" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.07);color:#A5D6A7;transition:.18s" style-hover="background:#2E7D32;color:#fff" innerHTML="{{ s.icon }}"></a>
+          </sc-for>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 16px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:700">{{ navTitle }}</h4>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
+            <li><a href="{{ l.href }}" style="color:#9DB6A2;text-decoration:none;font-size:15px;transition:.15s" style-hover="color:#A5D6A7">{{ l.label }}</a></li>
+          </sc-for>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 16px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:700">{{ moreTitle }}</h4>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ moreLinks }}" as="l" hint-placeholder-count="3">
+            <li><a href="{{ l.href }}" style="color:#9DB6A2;text-decoration:none;font-size:15px;transition:.15s" style-hover="color:#A5D6A7">{{ l.label }}</a></li>
+          </sc-for>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 16px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:700">{{ contactTitle }}</h4>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;font-size:15px">
+          <li style="display:flex;gap:10px;align-items:flex-start"><span style="color:#66BB6A;flex:none">✉</span><a href="mailto:karimeltaher640@gmail.com" style="color:#9DB6A2;text-decoration:none;word-break:break-all" style-hover="color:#A5D6A7">karimeltaher640@gmail.com</a></li>
+          <li style="display:flex;gap:10px;align-items:center"><span style="color:#66BB6A;flex:none">☎</span><a href="tel:+966549930730" dir="ltr" style="color:#9DB6A2;text-decoration:none" style-hover="color:#A5D6A7">+966 54 993 0730</a></li>
+          <li style="display:flex;gap:10px;align-items:center"><span style="color:#66BB6A;flex:none">⚲</span><span style="color:#9DB6A2">{{ locationLabel }}</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:52px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center">
+      <span style="font-size:13.5px;color:#7E9784">{{ copyright }}</span>
+      <span style="font-size:13.5px;color:#5E7A65;font-style:italic">{{ madeWith }}</span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:420},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;ar&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals(){
+    const ar = (this.props.lang || 'en') === 'ar';
+    const ig = '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+    const tt = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.3 1.9 4 4.2 4.3v3c-1.6 0-3-.5-4.2-1.3v6.4c0 3.6-2.8 6.1-6.1 6.1A6 6 0 0 1 4.4 15c0-3.4 2.9-6 6.4-5.6v3.1c-.4-.1-.8-.2-1.2-.2A2.6 2.6 0 0 0 7.4 15c0 1.5 1.2 2.6 2.7 2.6 1.5 0 2.7-1.1 2.7-2.8V3h3.7z"/></svg>';
+    const yt = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>';
+    const fb = '<svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7c0-1 .3-1.5 1.6-1.5H17V2.2C16.6 2.1 15.5 2 14.3 2 11.6 2 10 3.6 10 6.5V9H7.5v3.5H10V22h4v-9.5h2.7l.4-3.5H14z"/></svg>';
+    return {
+      blurb: ar ? 'خطط تغذية مبنية على العلم يصممها د. كريم الطاهر، صيدلي إكلينيكي وخبير تغذية معتمد.' : 'Science-backed, personalized nutrition plans crafted by Dr. Karim Eltaher — Clinical Pharmacist & Certified Nutrition Expert.',
+      navTitle: ar ? 'تصفح' : 'Navigate',
+      moreTitle: ar ? 'المزيد' : 'More',
+      contactTitle: ar ? 'تواصل' : 'Get in touch',
+      locationLabel: ar ? 'الرياض، العليا، السعودية' : 'Riyadh, Olaya, KSA',
+      links: [
+        { label: ar?'الرئيسية':'Home', href:'Home.dc.html' },
+        { label: ar?'من نحن':'About', href:'About.dc.html' },
+        { label: ar?'الخدمات':'Services', href:'Services.dc.html' },
+        { label: ar?'المدونة':'Blog', href:'Blog.dc.html' },
+        { label: ar?'تواصل معنا':'Contact', href:'Contact.dc.html' },
+      ],
+      moreLinks: [
+        { label: ar?'اشترك في خطة':'Get a Plan', href:'Subscription.dc.html' },
+        { label: ar?'سياسة الخصوصية':'Privacy Policy', href:'#' },
+        { label: ar?'الشروط والأحكام':'Terms', href:'#' },
+      ],
+      socials: [
+        { name:'Instagram', href:'https://instagram.com/dr.karimeltaher', icon: ig },
+        { name:'TikTok', href:'https://tiktok.com/@dr.karimeltaher', icon: tt },
+        { name:'YouTube', href:'https://youtube.com/@nutridoc', icon: yt },
+        { name:'Facebook', href:'https://facebook.com/nutridoc', icon: fb },
+      ],
+      copyright: '© ' + new Date().getFullYear() + (ar ? ' نوتري دوك. جميع الحقوق محفوظة.' : ' NutriDoc. All rights reserved.'),
+      madeWith: ar ? 'صُمم بعناية من أجل صحتك' : 'Designed with care for your health',
+    };
+  }
+}
+</script>
+</body>
+</html>
