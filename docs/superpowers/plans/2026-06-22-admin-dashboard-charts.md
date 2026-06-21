@@ -21,7 +21,7 @@
 
 **Files:**
 - Modify: `backend/config/admin_site.py`
-- Test: `backend/blog/tests/test_models.py` (extend `AdminDashboardContextTest`)
+- Test: `backend/config/tests.py` (extend `AdminDashboardContextTest`)
 
 **Interfaces:**
 - Produces: a module-level function `_activity_series(queryset, date_field="created_at")` in `config/admin_site.py` returning `{"daily": [{"label": "2026-05-24", "value": 3}, ...], "monthly": [{"label": "2025-07", "value": 12}, ...]}`. `daily` always has exactly 90 entries (oldest first, ending today), `monthly` always has exactly 12 entries (oldest first, ending with the current month).
@@ -30,7 +30,7 @@
 
 - [ ] **Step 1: Write the failing test**
 
-Add to `backend/blog/tests/test_models.py`, inside `AdminDashboardContextTest` (it already has `setUp` creating 2 posts, 2 contacts, 2 plan requests):
+Add to `backend/config/tests.py`, inside `AdminDashboardContextTest` (it already has `setUp` creating 2 posts, 2 contacts, 2 plan requests):
 
 ```python
     def test_dashboard_chart_series_in_context(self):
@@ -50,7 +50,7 @@ Add to `backend/blog/tests/test_models.py`, inside `AdminDashboardContextTest` (
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `cd backend && .venv/bin/python manage.py test blog.tests.test_models.AdminDashboardContextTest.test_dashboard_chart_series_in_context -v 2`
+Run: `cd backend && .venv/bin/python manage.py test config.tests.AdminDashboardContextTest.test_dashboard_chart_series_in_context -v 2`
 Expected: FAIL with `KeyError: 'posts_chart'` (context key doesn't exist yet)
 
 - [ ] **Step 3: Write minimal implementation**
@@ -162,13 +162,13 @@ class NutriDocAdminSite(admin.AdminSite):
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `cd backend && .venv/bin/python manage.py test blog.tests.test_models.AdminDashboardContextTest -v 2`
+Run: `cd backend && .venv/bin/python manage.py test config.tests.AdminDashboardContextTest -v 2`
 Expected: all tests in `AdminDashboardContextTest` PASS (4 tests including the new one)
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd backend && git add config/admin_site.py blog/tests/test_models.py
+cd backend && git add config/admin_site.py config/tests.py
 git commit -m "Add zero-filled activity series to admin dashboard context"
 ```
 
@@ -178,7 +178,7 @@ git commit -m "Add zero-filled activity series to admin dashboard context"
 
 **Files:**
 - Modify: `backend/templates/admin/index.html`
-- Test: `backend/blog/tests/test_models.py` (extend `AdminDashboardTemplateTest`)
+- Test: `backend/config/tests.py` (extend `AdminDashboardTemplateTest`)
 
 **Interfaces:**
 - Consumes: `posts_chart`, `contacts_chart`, `plan_requests_chart` context keys produced in Task 1 (each `{"daily": [...], "monthly": [...]}`).
@@ -186,7 +186,7 @@ git commit -m "Add zero-filled activity series to admin dashboard context"
 
 - [ ] **Step 1: Write the failing test**
 
-Add to `backend/blog/tests/test_models.py`, inside `AdminDashboardTemplateTest`:
+Add to `backend/config/tests.py`, inside `AdminDashboardTemplateTest`:
 
 ```python
     def test_dashboard_renders_chart_panels(self):
@@ -201,7 +201,7 @@ Add to `backend/blog/tests/test_models.py`, inside `AdminDashboardTemplateTest`:
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `cd backend && .venv/bin/python manage.py test blog.tests.test_models.AdminDashboardTemplateTest.test_dashboard_renders_chart_panels -v 2`
+Run: `cd backend && .venv/bin/python manage.py test config.tests.AdminDashboardTemplateTest.test_dashboard_renders_chart_panels -v 2`
 Expected: FAIL — `chart-posts` not found in response content
 
 - [ ] **Step 3: Write minimal implementation**
@@ -269,13 +269,13 @@ In `backend/templates/admin/index.html`, insert a new row right before the final
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `cd backend && .venv/bin/python manage.py test blog.tests.test_models.AdminDashboardTemplateTest -v 2`
+Run: `cd backend && .venv/bin/python manage.py test config.tests.AdminDashboardTemplateTest -v 2`
 Expected: all tests in `AdminDashboardTemplateTest` PASS (2 tests)
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd backend && git add templates/admin/index.html blog/tests/test_models.py
+cd backend && git add templates/admin/index.html config/tests.py
 git commit -m "Add chart panels and embedded chart data to admin dashboard template"
 ```
 
@@ -287,7 +287,7 @@ git commit -m "Add chart panels and embedded chart data to admin dashboard templ
 - Modify: `backend/config/settings.py` (`JAZZMIN_SETTINGS`)
 - Modify: `backend/templates/admin/index.html` (add Chart.js CDN `<script>`)
 - Create: `backend/static/admin/js/dashboard-charts.js`
-- Test: `backend/blog/tests/test_models.py` (extend `AdminDashboardTemplateTest`)
+- Test: `backend/config/tests.py` (extend `AdminDashboardTemplateTest`)
 
 **Interfaces:**
 - Consumes: the `<canvas>` ids and `json_script` ids from Task 2, and the `{"daily": [{"label", "value"}, ...90], "monthly": [...12]}` shape from Task 1.
@@ -297,7 +297,7 @@ This task is JS-only behavior plus a static asset reference, so it's tested by a
 
 - [ ] **Step 1: Write the failing test**
 
-Add to `backend/blog/tests/test_models.py`, inside `AdminDashboardTemplateTest`:
+Add to `backend/config/tests.py`, inside `AdminDashboardTemplateTest`:
 
 ```python
     def test_dashboard_includes_chartjs_and_custom_script(self):
@@ -308,7 +308,7 @@ Add to `backend/blog/tests/test_models.py`, inside `AdminDashboardTemplateTest`:
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `cd backend && .venv/bin/python manage.py test blog.tests.test_models.AdminDashboardTemplateTest.test_dashboard_includes_chartjs_and_custom_script -v 2`
+Run: `cd backend && .venv/bin/python manage.py test config.tests.AdminDashboardTemplateTest.test_dashboard_includes_chartjs_and_custom_script -v 2`
 Expected: FAIL — neither string present in response content
 
 - [ ] **Step 3: Write minimal implementation**
@@ -402,13 +402,13 @@ Create `backend/static/admin/js/dashboard-charts.js`:
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `cd backend && .venv/bin/python manage.py test blog.tests.test_models.AdminDashboardTemplateTest -v 2`
+Run: `cd backend && .venv/bin/python manage.py test config.tests.AdminDashboardTemplateTest -v 2`
 Expected: all tests in `AdminDashboardTemplateTest` PASS (3 tests)
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd backend && git add config/settings.py templates/admin/index.html static/admin/js/dashboard-charts.js blog/tests/test_models.py
+cd backend && git add config/settings.py templates/admin/index.html static/admin/js/dashboard-charts.js config/tests.py
 git commit -m "Wire up Chart.js and chip-based range switching on admin dashboard"
 ```
 
