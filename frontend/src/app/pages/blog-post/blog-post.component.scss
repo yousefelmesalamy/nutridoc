@@ -1,0 +1,48 @@
+@import '../../../styles/tokens';
+
+.nd-page { font-family: $font-body; color: $nd-text; background: #fff; overflow-x: hidden; }
+.nd-loading { padding: 120px 20px; text-align: center; color: $nd-text-faint; }
+
+.nd-hero { position: relative; height: 420px; background: linear-gradient(140deg, $nd-green-dark, $nd-green, $nd-green-mid); display: flex; align-items: flex-end; }
+.nd-hero__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,36,23,.78), rgba(15,36,23,.15)); }
+.nd-hero__inner { position: relative; max-width: 900px; margin: 0 auto; padding: 0 28px 48px; width: 100%; @include bp-560 { padding-left: 20px; padding-right: 20px; } }
+.nd-crumbs { font-size: 13.5px; color: #CADCCD; margin-bottom: 18px; a { color: #CADCCD; text-decoration: none; } span { opacity: .6; } .current { color: #fff; opacity: 1; } }
+.nd-hero__cat { display: inline-block; background: $nd-green-light; color: $nd-green-dark; font-size: 12px; font-weight: 700; padding: 5px 13px; border-radius: 999px; margin-bottom: 14px; }
+.nd-hero__h1 { font-family: $font-serif; font-weight: 500; font-size: 44px; line-height: 1.1; color: #fff; margin: 0; letter-spacing: -.02em; max-width: 20ch; @include bp-560 { font-size: 30px; } }
+.nd-hero__meta { display: flex; align-items: center; gap: 12px; margin-top: 20px; color: #D6E8D8; font-size: 14px; .dot { opacity: .6; } }
+.nd-hero__avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(140deg, $nd-green-mid, $nd-green-light); display: flex; align-items: center; justify-content: center; color: $nd-green-dark; font-weight: 700; }
+.nd-hero__author { font-weight: 600; color: #fff; }
+
+.nd-body-grid { max-width: 1120px; margin: 0 auto; padding: 64px 28px 90px; display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: start; @include bp-920 { grid-template-columns: 1fr; } @include bp-560 { padding-left: 20px; padding-right: 20px; } }
+.nd-article {
+  font-size: 17.5px; line-height: 1.8; color: #33423A;
+  h2 { font-family: $font-serif; font-weight: 600; font-size: 28px; color: $nd-text; margin: 40px 0 14px; letter-spacing: -.01em; }
+  h3 { font-size: 20px; font-weight: 700; color: $nd-text; margin: 28px 0 12px; }
+  p { margin: 0 0 22px; }
+  blockquote { margin: 32px 0; padding: 20px 26px; border-inline-start: 4px solid $nd-green-mid; background: #F2F8F2; border-radius: 0 12px 12px 0; font-family: $font-serif; font-style: italic; font-size: 20px; color: $nd-green-dark; line-height: 1.5; }
+  ul { margin: 0 0 24px; padding-inline-start: 22px; display: flex; flex-direction: column; gap: 10px; }
+}
+.nd-aside { display: flex; flex-direction: column; gap: 22px; position: sticky; top: 96px; @include bp-920 { order: -1; position: static; } }
+.nd-aside__author { border: 1px solid $nd-border; border-radius: 18px; padding: 26px; background: $nd-bg-soft; p { margin: 0 0 14px; font-size: 14px; line-height: 1.65; color: $nd-text-muted; } }
+.nd-aside__author-head { display: flex; align-items: center; gap: 13px; margin-bottom: 14px; }
+.nd-aside__avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(140deg, $nd-green-mid, $nd-green); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 20px; }
+.nd-aside__name { font-weight: 700; font-size: 16px; }
+.nd-aside__role { font-size: 13px; color: $nd-green; font-weight: 600; }
+.nd-aside__cta { color: $nd-green-dark; font-weight: 700; font-size: 14px; text-decoration: none; border-bottom: 2px solid $nd-green-light; padding-bottom: 2px; }
+.nd-aside__related { border: 1px solid $nd-border; border-radius: 18px; padding: 26px; h4 { margin: 0 0 16px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: $nd-green; font-weight: 700; } }
+.nd-aside__related-list { display: flex; flex-direction: column; gap: 14px; a { text-decoration: none; color: $nd-text; font-size: 15px; font-weight: 600; line-height: 1.4; &:hover { color: $nd-green; } } }
+.nd-aside__sub { border-radius: 18px; padding: 26px; background: linear-gradient(140deg, $nd-green-dark, $nd-green); color: #fff; h4 { margin: 0 0 8px; font-family: $font-serif; font-size: 21px; font-weight: 600; } p { margin: 0 0 16px; font-size: 14px; color: #D6E8D8; line-height: 1.6; } }
+.nd-aside__sub-btn { display: block; text-align: center; background: #fff; color: $nd-green-dark; text-decoration: none; font-weight: 700; font-size: 15px; padding: 12px; border-radius: 12px; }
+
+.nd-share {
+  max-width: 1120px; margin: -50px auto 0; padding: 0 28px 40px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  span:first-child { font-size: 14px; font-weight: 700; color: $nd-text; }
+  button, a { font-family: inherit; cursor: pointer; border: 1px solid $nd-border-green; background: #fff; color: $nd-green-dark; font-weight: 600; font-size: 14px; padding: 9px 16px; border-radius: 999px; display: flex; align-items: center; gap: 7px; text-decoration: none; &:hover { background: #EAF4EA; } }
+}
+
+.nd-more { background: $nd-bg-soft; border-top: 1px solid $nd-border-soft; }
+.nd-more__inner { max-width: 1180px; margin: 0 auto; padding: 80px 28px; h2 { font-family: $font-serif; font-weight: 500; font-size: 34px; margin: 0 0 36px; letter-spacing: -.02em; } @include bp-560 { padding-left: 20px; padding-right: 20px; } }
+.nd-more__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; @include bp-560 { grid-template-columns: 1fr; } }
+.nd-more__card { text-decoration: none; color: inherit; background: #fff; border: 1px solid $nd-border-soft; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; transition: .2s; &:hover { box-shadow: 0 16px 40px rgba(15,36,23,.1); transform: translateY(-4px); } }
+.nd-more__img { height: 150px; background: linear-gradient(140deg, $nd-green-mid, $nd-green); display: flex; align-items: flex-end; padding: 14px; span { background: rgba(255,255,255,.92); color: $nd-green-dark; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px; } }
+.nd-more__body { padding: 20px; h3 { font-size: 17.5px; font-weight: 700; line-height: 1.32; margin: 0 0 8px; } span { font-size: 13px; color: #8A9A8E; } }

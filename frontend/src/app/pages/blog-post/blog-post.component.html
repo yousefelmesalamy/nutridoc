@@ -1,0 +1,78 @@
+<div class="nd-page">
+  <app-nav active="blog" />
+  <main>
+    @if (loading()) {
+      <div class="nd-loading"><p>{{ ar() ? 'جارٍ التحميل...' : 'Loading...' }}</p></div>
+    } @else if (post()) {
+      <section class="nd-hero">
+        <div class="nd-hero__overlay"></div>
+        <div class="nd-hero__inner">
+          <nav class="nd-crumbs">
+            <a routerLink="/">{{ crumbHome() }}</a> <span>/</span> <a routerLink="/blog">{{ crumbBlog() }}</a> <span>/</span> <span class="current">{{ title() }}</span>
+          </nav>
+          <span class="nd-hero__cat">{{ category() }}</span>
+          <h1 class="nd-hero__h1">{{ title() }}</h1>
+          <div class="nd-hero__meta">
+            <span class="nd-hero__avatar">K</span>
+            <span class="nd-hero__author">{{ post()!.author }}</span><span class="dot">·</span><span>{{ dateLabel() }}</span><span class="dot">·</span><span>{{ readTimeLabel() }}</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="nd-body-grid">
+        <article class="nd-article" [innerHTML]="body()"></article>
+
+        <aside class="nd-aside">
+          <div class="nd-aside__author">
+            <div class="nd-aside__author-head">
+              <span class="nd-aside__avatar">K</span>
+              <div><div class="nd-aside__name">{{ post()!.author }}</div><div class="nd-aside__role">{{ authorRole() }}</div></div>
+            </div>
+            <p>{{ authorBio() }}</p>
+            <a routerLink="/about" class="nd-aside__cta">{{ authorCta() }} →</a>
+          </div>
+
+          @if (post()!.related.length > 0) {
+            <div class="nd-aside__related">
+              <h4>{{ relatedTitleLabel() }}</h4>
+              <div class="nd-aside__related-list">
+                @for (r of post()!.related; track r.id) {
+                  <a [routerLink]="['/blog', r.slug]">{{ relatedTitle(r) }}</a>
+                }
+              </div>
+            </div>
+          }
+
+          <div class="nd-aside__sub">
+            <h4>{{ subTitle() }}</h4>
+            <p>{{ subText() }}</p>
+            <a routerLink="/subscription" class="nd-aside__sub-btn">{{ subBtn() }}</a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="nd-share">
+        <span>{{ shareLabel() }}</span>
+        <button type="button" (click)="copyLink()">🔗 {{ copyLabel() }}</button>
+        <a [href]="waHref()" target="_blank" rel="noopener">💬 WhatsApp</a>
+      </div>
+
+      @if (post()!.related.length > 0) {
+        <section class="nd-more">
+          <div class="nd-more__inner">
+            <h2>{{ moreTitle() }}</h2>
+            <div class="nd-more__grid">
+              @for (r of post()!.related; track r.id) {
+                <a [routerLink]="['/blog', r.slug]" class="nd-more__card">
+                  <div class="nd-more__img"><span>{{ relatedCategory(r) }}</span></div>
+                  <div class="nd-more__body"><h3>{{ relatedTitle(r) }}</h3><span>{{ relatedReadLabel(r) }}</span></div>
+                </a>
+              }
+            </div>
+          </div>
+        </section>
+      }
+    }
+  </main>
+  <app-footer />
+</div>
