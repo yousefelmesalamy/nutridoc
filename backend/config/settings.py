@@ -124,15 +124,20 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Public origin of this backend, used to build absolute media URLs (e.g. for
+# images uploaded via CKEditor) so they resolve correctly when rendered on a
+# different origin/port such as the Angular dev server.
+BACKEND_BASE_URL = 'http://localhost:8000'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CKEDITOR_5_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+CKEDITOR_5_FILE_STORAGE = 'config.storage.AbsoluteURLFileSystemStorage'
 CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': [
@@ -159,6 +164,9 @@ CKEDITOR_5_CONFIGS = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
+]
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^http://localhost:\d+$",
 ]
 
 REST_FRAMEWORK = {
