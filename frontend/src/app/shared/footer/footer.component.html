@@ -1,0 +1,65 @@
+<footer class="nd-footer">
+  <div class="nd-footer__inner">
+    <div class="nd-footer__grid">
+      <div>
+        <div class="nd-footer__brand">
+          <img src="assets/nutridoc-logo.png" alt="NutriDoc logo" width="46" height="46" />
+          <span class="nd-footer__name">NutriDoc</span>
+        </div>
+        <p class="nd-footer__blurb">{{ blurb() }}</p>
+        <div class="nd-footer__socials">
+          @for (s of socials; track s.name) {
+            <a [href]="s.href" [attr.aria-label]="s.name" target="_blank" rel="noopener" class="nd-footer__social">
+              @switch (s.icon) {
+                @case ('instagram') {
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                }
+                @case ('tiktok') {
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.3 1.9 4 4.2 4.3v3c-1.6 0-3-.5-4.2-1.3v6.4c0 3.6-2.8 6.1-6.1 6.1A6 6 0 0 1 4.4 15c0-3.4 2.9-6 6.4-5.6v3.1c-.4-.1-.8-.2-1.2-.2A2.6 2.6 0 0 0 7.4 15c0 1.5 1.2 2.6 2.7 2.6 1.5 0 2.7-1.1 2.7-2.8V3h3.7z"/></svg>
+                }
+                @case ('youtube') {
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM9.8 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>
+                }
+                @case ('facebook') {
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7c0-1 .3-1.5 1.6-1.5H17V2.2C16.6 2.1 15.5 2 14.3 2 11.6 2 10 3.6 10 6.5V9H7.5v3.5H10V22h4v-9.5h2.7l.4-3.5H14z"/></svg>
+                }
+              }
+            </a>
+          }
+        </div>
+      </div>
+
+      <div>
+        <h4 class="nd-footer__heading">{{ navTitle() }}</h4>
+        <ul class="nd-footer__list">
+          @for (l of links(); track l.href) {
+            <li><a [routerLink]="l.href" class="nd-footer__link">{{ l.label }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="nd-footer__heading">{{ moreTitle() }}</h4>
+        <ul class="nd-footer__list">
+          @for (l of moreLinks(); track l.href) {
+            <li><a [routerLink]="l.href" class="nd-footer__link">{{ l.label }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="nd-footer__heading">{{ contactTitle() }}</h4>
+        <ul class="nd-footer__list nd-footer__list--contact">
+          <li class="nd-footer__contact-row"><span class="nd-footer__glyph">✉</span><a href="mailto:karimeltaher640@gmail.com" class="nd-footer__link nd-footer__link--break">karimeltaher640@gmail.com</a></li>
+          <li class="nd-footer__contact-row"><span class="nd-footer__glyph">☎</span><a href="tel:+966549930730" dir="ltr" class="nd-footer__link">+966 54 993 0730</a></li>
+          <li class="nd-footer__contact-row"><span class="nd-footer__glyph">⚲</span><span class="nd-footer__static">{{ locationLabel() }}</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nd-footer__bottom">
+      <span class="nd-footer__copyright">{{ copyright() }}</span>
+      <span class="nd-footer__madewith">{{ madeWith() }}</span>
+    </div>
+  </div>
+</footer>
