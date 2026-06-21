@@ -61,6 +61,20 @@ class AdminDashboardContextTest(TestCase):
         self.assertEqual(list(recent["plan_requests"]), list(PlanRequest.objects.order_by("-created_at")[:5]))
         self.assertEqual(list(recent["contacts"]), list(ContactSubmission.objects.order_by("-created_at")[:5]))
 
+    def test_dashboard_chart_series_in_context(self):
+        response = self.client.get("/admin/")
+        for key in ("posts_chart", "contacts_chart", "plan_requests_chart"):
+            chart = response.context[key]
+            self.assertIn("daily", chart)
+            self.assertIn("monthly", chart)
+            self.assertEqual(len(chart["daily"]), 90)
+            self.assertEqual(len(chart["monthly"]), 12)
+            # every entry created in setUp() happened today
+            self.assertEqual(chart["daily"][-1]["value"], 2)
+            self.assertEqual(chart["monthly"][-1]["value"], 2)
+            # labels are zero-filled, oldest first
+            self.assertTrue(chart["daily"][0]["label"] < chart["daily"][-1]["label"])
+
 
 class AdminDashboardTemplateTest(TestCase):
     def setUp(self):
