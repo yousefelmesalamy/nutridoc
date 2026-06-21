@@ -192,6 +192,7 @@ JAZZMIN_SETTINGS = {
         "leads.PlanRequest": "fas fa-clipboard-list",
     },
     "custom_css": "admin/css/dashboard.css",
+    "custom_js": "admin/js/dashboard-charts.js",
 }
 
 JAZZMIN_UI_TWEAKS = {

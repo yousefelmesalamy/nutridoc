@@ -106,3 +106,8 @@ class AdminDashboardTemplateTest(TestCase):
         self.assertContains(response, 'id="posts-chart-data"')
         self.assertContains(response, 'data-range="7"')
         self.assertContains(response, 'data-range="12m"')
+
+    def test_dashboard_includes_chartjs_and_custom_script(self):
+        response = self.client.get("/admin/")
+        self.assertContains(response, "chart.js")
+        self.assertContains(response, "dashboard-charts.js")
