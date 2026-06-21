@@ -1,0 +1,48 @@
+<div class="nd-page">
+  <app-nav active="services" />
+  <main>
+    <section class="nd-hero">
+      <div class="nd-hero__inner">
+        <span class="nd-eyebrow">{{ eyebrow() }}</span>
+        <h1 class="nd-h1">{{ h1() }}</h1>
+        <p class="nd-hero__intro">{{ intro() }}</p>
+      </div>
+    </section>
+
+    <section class="nd-grid-sec">
+      <div class="nd-grid">
+        @for (s of services(); track s.key) {
+          <div class="nd-card" [class.featured]="s.featured">
+            @if (s.featured) {
+              <span class="nd-card__badge">{{ uniqueLabel() }}</span>
+            }
+            <div class="nd-card__icon">
+              @switch (s.key) {
+                @case ('plan') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2h6a2 2 0 0 1 2 2v0H7v0a2 2 0 0 1 2-2z"/><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 10h6M9 14h6M9 18h3"/></svg> }
+                @case ('weight') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3l-9 9"/></svg> }
+                @case ('clinical') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/><path d="M12 8v6M9 11h6"/></svg> }
+                @case ('drug') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(45 12 12)"/><path d="M9 9l6 6"/></svg> }
+                @case ('sport') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.5 6.5l11 11M4 9l2-2M9 4l-2 2M15 20l2-2M20 15l-2 2M7 7l-3 3M17 17l-3 3"/></svg> }
+                @case ('online') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="14" height="11" rx="2"/><path d="M16 8l6-3v9l-6-3z"/></svg> }
+              }
+            </div>
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.desc }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="nd-cta">
+      <div class="nd-cta__inner">
+        <h2>{{ ctaH2() }}</h2>
+        <p>{{ ctaSub() }}</p>
+        <div class="nd-cta__actions">
+          <a routerLink="/subscription" class="nd-cta__btn1">{{ ctaBtn1() }}</a>
+          <a routerLink="/contact" class="nd-cta__btn2">{{ ctaBtn2() }}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <app-footer />
+</div>
