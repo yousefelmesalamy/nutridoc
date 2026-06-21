@@ -1,0 +1,243 @@
+<div class="nd-page">
+  <app-nav active="home" />
+
+  <main>
+    <!-- HERO -->
+    <section class="nd-hero">
+      <div class="nd-hero__orbs">
+        <div class="nd-hero__orb nd-hero__orb--1"></div>
+        <div class="nd-hero__orb nd-hero__orb--2"></div>
+        <div class="nd-hero__orb nd-hero__orb--3"></div>
+      </div>
+      <div class="nd-hero__grid">
+        <div class="nd-hero__left">
+          <div class="nd-hero__eyebrow"><span class="nd-hero__dot"></span><span>{{ heroEyebrow() }}</span></div>
+          <h1 class="nd-hero__h1">{{ heroH1a() }} <em>{{ heroH1b() }}</em> {{ heroH1c() }}</h1>
+          <p class="nd-hero__sub">{{ heroSub() }}</p>
+          <div class="nd-hero__ctas">
+            <a routerLink="/blog" class="nd-hero__cta-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              {{ heroCta1() }}
+            </a>
+            <a routerLink="/about" class="nd-hero__cta-secondary">
+              {{ heroCta2() }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <p class="nd-hero__reassure">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#66BB6A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            {{ heroReassure() }}
+          </p>
+        </div>
+        <div class="nd-hero__right">
+          <div class="nd-hero__card-wrap">
+            <div class="nd-hero__card-shadow"></div>
+            <div class="nd-hero__card">
+              <span class="nd-hero__card-tag">{{ heroCardTag() }}</span>
+              <h3 class="nd-hero__card-title">{{ heroCardTitle() }}</h3>
+              <p class="nd-hero__card-excerpt">{{ heroCardExcerpt() }}</p>
+              <div class="nd-hero__card-foot">
+                <span class="nd-hero__card-avatar">K</span>
+                <span class="nd-hero__card-author">{{ heroCardAuthor() }}</span>
+                <span class="nd-hero__card-verified">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                  {{ heroCardVerified() }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nd-hero__scroll">
+        <span>{{ scrollLabel() }}</span>
+        <div class="nd-hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="nd-trust">
+      <div class="nd-sec">
+        <div class="nd-trust__head">
+          <span class="nd-eyebrow">{{ trustEyebrow() }}</span>
+          <h2 class="nd-trust__h2">{{ trustH2() }}</h2>
+        </div>
+        <div class="nd-trust__grid">
+          @for (t of trustPoints(); track t.title) {
+            <div class="nd-trust__item">
+              <div class="nd-trust__icon">
+                @switch (t.icon) {
+                  @case ('pill') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(45 12 12)"/><path d="M9 9l6 6"/></svg> }
+                  @case ('book') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> }
+                  @case ('shield') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> }
+                  @case ('free') { <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 9h6M9 12h6M9 15h3"/></svg> }
+                }
+              </div>
+              <h3 class="nd-trust__title">{{ t.title }}</h3>
+              <p class="nd-trust__desc">{{ t.desc }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- KNOWLEDGE HUB -->
+    <section class="nd-hub">
+      <div class="nd-sec">
+        <div class="nd-hub__head">
+          <div>
+            <span class="nd-eyebrow nd-eyebrow--light">{{ hubEyebrow() }}</span>
+            <h2 class="nd-hub__h2">{{ hubH2() }}</h2>
+            <p class="nd-hub__sub">{{ hubSub() }}</p>
+          </div>
+          <a routerLink="/blog" class="nd-hub__all">{{ blogAll() }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="nd-hub__grid">
+          <a routerLink="/blog" class="nd-hub__featured">
+            <div class="nd-hub__featured-img">
+              <span class="nd-hub__featured-cat">{{ featuredPost().cat }}</span>
+              <span class="nd-hub__featured-read">{{ featuredPost().read }}</span>
+            </div>
+            <div class="nd-hub__featured-body">
+              <h3>{{ featuredPost().title }}</h3>
+              <p>{{ featuredPost().excerpt }}</p>
+              <span class="nd-hub__featured-cta">{{ readMore() }} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </a>
+          <div class="nd-hub__rest">
+            @for (post of restPosts(); track post.title) {
+              <a routerLink="/blog" class="nd-hub__rest-item">
+                <div class="nd-hub__rest-thumb" [style.background]="post.bg"></div>
+                <div>
+                  <span class="nd-hub__rest-cat">{{ post.cat }}</span>
+                  <h3 class="nd-hub__rest-title">{{ post.title }}</h3>
+                  <span class="nd-hub__rest-read">{{ post.read }}</span>
+                </div>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICS -->
+    <section class="nd-topics">
+      <div class="nd-sec">
+        <div class="nd-topics__head">
+          <span class="nd-eyebrow">{{ topicsEyebrow() }}</span>
+          <h2 class="nd-topics__h2">{{ topicsH2() }}</h2>
+        </div>
+        <div class="nd-topics__grid">
+          @for (t of topics(); track t.title) {
+            <a routerLink="/blog" class="nd-card-hover nd-topics__card">
+              <div class="nd-topics__icon">
+                @switch (t.icon) {
+                  @case ('scale') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3l-9 9"/></svg> }
+                  @case ('myth') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 3.5M12 17h.01"/></svg> }
+                  @case ('clinic') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/><path d="M12 8v6M9 11h6"/></svg> }
+                  @case ('supp') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 3 3 10a4.95 4.95 0 0 0 7 7l7-7a4.95 4.95 0 0 0-7-7z"/><path d="M6.5 6.5 17.5 17.5"/></svg> }
+                  @case ('gut') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a5 5 0 0 0-5 5c0 2 1 3 1 5s-2 2-2 4a3 3 0 0 0 6 0c0-2 1-3 3-3s3 1 3-1-2-2-2-5a5 5 0 0 0-2-7"/></svg> }
+                  @case ('sport') { <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6.5 6.5l11 11M4 9l2-2M9 4l-2 2M15 20l2-2M20 15l-2 2"/></svg> }
+                }
+              </div>
+              <div>
+                <h3>{{ t.title }}</h3>
+                <p>{{ t.desc }}</p>
+              </div>
+              <span class="nd-topics__count">{{ t.count }} <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- MYTH VS FACT -->
+    <section class="nd-myth">
+      <div class="nd-myth__glow"></div>
+      <div class="nd-sec nd-myth__inner">
+        <div class="nd-myth__head">
+          <span class="nd-eyebrow nd-eyebrow--light">{{ mythEyebrow() }}</span>
+          <h2 class="nd-myth__h2">{{ mythH2() }}</h2>
+          <p class="nd-myth__sub">{{ mythSub() }}</p>
+        </div>
+        <div class="nd-myth__list">
+          @for (m of myths(); track m.claim; let i = $index) {
+            <div class="nd-myth__item" [class.open]="isMythOpen(i)" (click)="toggleMyth(i)">
+              <div class="nd-myth__row">
+                <span class="nd-myth__tag">{{ mythTag() }}</span>
+                <span class="nd-myth__claim">{{ m.claim }}</span>
+                <span class="nd-myth__toggle" [class.rotated]="isMythOpen(i)">+</span>
+              </div>
+              @if (isMythOpen(i)) {
+                <div class="nd-myth__answer">
+                  <span class="nd-myth__fact-tag">{{ factTag() }}</span>
+                  <p>{{ m.fact }}</p>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- MEET THE EXPERT -->
+    <section class="nd-about-teaser">
+      <div class="nd-sec nd-about-teaser__grid">
+        <div class="nd-about-teaser__photo-wrap">
+          <div class="nd-about-teaser__photo">
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8.5" r="5" stroke="#66BB6A" stroke-width="1"/><path d="M3 22c0-5 3.8-8 9-8s9 3 9 8" stroke="#66BB6A" stroke-width="1"/></svg>
+          </div>
+          <div class="nd-about-teaser__badge">
+            <div class="nd-about-teaser__badge-label">{{ credBadgeLabel() }}</div>
+            <div class="nd-about-teaser__badge-text">{{ credBadgeText() }}</div>
+          </div>
+        </div>
+        <div>
+          <span class="nd-eyebrow">{{ aboutEyebrow() }}</span>
+          <h2 class="nd-about-teaser__h2">{{ aboutH2() }}</h2>
+          <p class="nd-about-teaser__bio">{{ aboutBio() }}</p>
+          <div class="nd-about-teaser__creds">
+            @for (c of credentials(); track c) {
+              <span class="nd-about-teaser__cred"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>{{ c }}</span>
+            }
+          </div>
+          <a routerLink="/about" class="nd-about-teaser__cta">{{ aboutCta() }} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOLLOW -->
+    <section class="nd-follow">
+      <div class="nd-sec nd-follow__inner">
+        <span class="nd-eyebrow">{{ followEyebrow() }}</span>
+        <h2 class="nd-follow__h2">{{ followH2() }}</h2>
+        <p class="nd-follow__sub">{{ followSub() }}</p>
+        <div class="nd-follow__grid">
+          @for (s of socials; track s.platform) {
+            <a [href]="s.href" target="_blank" rel="noopener" class="nd-card-hover nd-follow__item">
+              <span class="nd-follow__glyph">{{ s.glyph }}</span>
+              <span><span class="nd-follow__platform">{{ s.platform }}</span><span class="nd-follow__handle">{{ s.handle }}</span></span>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- SOFT CTA -->
+    <section class="nd-plan-cta">
+      <div class="nd-plan-cta__line"></div>
+      <div class="nd-sec nd-plan-cta__grid">
+        <div>
+          <span class="nd-eyebrow nd-eyebrow--light">{{ planEyebrow() }}</span>
+          <h2 class="nd-plan-cta__h2">{{ planH2() }}</h2>
+          <p class="nd-plan-cta__sub">{{ planSub() }}</p>
+        </div>
+        <div class="nd-plan-cta__action">
+          <a routerLink="/subscription" class="nd-plan-cta__btn">{{ planBtn() }} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <span class="nd-plan-cta__note">{{ planNote() }}</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer />
+</div>

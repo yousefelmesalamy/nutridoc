@@ -1,0 +1,15 @@
+@import 'styles/tokens';
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+body { font-family: $font-body; color: $nd-text; background: $nd-bg; }
+
+@keyframes ndOrb1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(60px,-40px) scale(1.12)} 66%{transform:translate(-30px,50px) scale(.94)} }
+@keyframes ndOrb2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-50px,30px) scale(1.08)} 66%{transform:translate(40px,-60px) scale(.96)} }
+@keyframes ndOrb3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,30px)} }
+@keyframes ndPulse { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+.nd-card-hover {
+  transition: transform .25s cubic-bezier(.22,.68,0,1.2), box-shadow .25s, border-color .25s;
+  &:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(15,36,23,.14); }
+}

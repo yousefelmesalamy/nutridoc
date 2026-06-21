@@ -1,0 +1,169 @@
+<div class="nd-page">
+  <app-nav active="services" />
+  <main>
+    <section class="nd-hero">
+      <div class="nd-hero__inner">
+        <span class="nd-eyebrow">{{ eyebrow() }}</span>
+        <h1 class="nd-h1">{{ h1() }}</h1>
+        <p>{{ intro() }}</p>
+      </div>
+    </section>
+
+    <section class="nd-plans">
+      <div class="nd-plans__grid">
+        @for (p of planMeta(); track p.key) {
+          <div class="nd-plan-card" [class.selected]="selected() === p.key" [class.popular]="p.popular" (click)="selectPlan(p.key)">
+            @if (p.popular) {
+              <span class="nd-plan-card__badge">{{ popularLabel() }}</span>
+            }
+            <div class="nd-plan-card__head">
+              <h3 [class]="'nd-plan-card__name nd-plan-card__name--' + p.accent">{{ p.name }}</h3>
+              <span class="nd-plan-card__radio" [class.selected]="selected() === p.key">{{ selected() === p.key ? '✓' : '' }}</span>
+            </div>
+            <div class="nd-plan-card__price"><span>{{ p.price }}</span><span class="nd-plan-card__period">{{ period() }}</span></div>
+            <ul class="nd-plan-card__features">
+              @for (f of features(p.key); track f.label) {
+                <li [class.included]="f.included">
+                  <span class="nd-plan-card__mark" [class.included]="f.included">{{ f.included ? '✓' : '—' }}</span>{{ f.label }}
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+      <p class="nd-plans__note">{{ selectedNote() }}</p>
+    </section>
+
+    <section class="nd-form-sec">
+      @if (!submitted()) {
+        <div class="nd-form-card">
+          <div class="nd-stepper">
+            @for (lab of stepLabels(); track lab; let i = $index) {
+              <div class="nd-stepper__step">
+                <div class="nd-stepper__head">
+                  <span class="nd-stepper__dot" [class.active]="step() >= i + 1">{{ step() > i + 1 ? '✓' : i + 1 }}</span>
+                  <span class="nd-stepper__label" [class.active]="step() >= i + 1">{{ lab }}</span>
+                </div>
+                @if (i < 2) {
+                  <span class="nd-stepper__line" [class.done]="step() > i + 1"></span>
+                }
+              </div>
+            }
+          </div>
+
+          @if (step() === 1) {
+            <div>
+              <h2>{{ step1Title() }}</h2>
+              <div class="nd-form-grid">
+                <label class="nd-field">
+                  <span>{{ L().fullName }}</span>
+                  <input [value]="form().fullName" (input)="setFieldFromInput('fullName', $event)" />
+                  <span class="nd-error">{{ errors()['fullName'] }}</span>
+                </label>
+                <label class="nd-field">
+                  <span>{{ L().email }}</span>
+                  <input type="email" [value]="form().email" (input)="setFieldFromInput('email', $event)" />
+                  <span class="nd-error">{{ errors()['email'] }}</span>
+                </label>
+                <label class="nd-field">
+                  <span>{{ L().phone }}</span>
+                  <input [value]="form().phone" (input)="setFieldFromInput('phone', $event)" dir="ltr" />
+                  <span class="nd-error">{{ errors()['phone'] }}</span>
+                </label>
+                <label class="nd-field">
+                  <span>{{ L().age }}</span>
+                  <input type="number" [value]="form().age" (input)="setFieldFromInput('age', $event)" />
+                  <span class="nd-error">{{ errors()['age'] }}</span>
+                </label>
+              </div>
+              <div class="nd-gender">
+                <span class="nd-gender__label">{{ L().gender }}</span>
+                <div class="nd-gender__opts">
+                  @for (g of genderOpts(); track g.v) {
+                    <button type="button" class="nd-gender__btn" [class.selected]="form().gender === g.v" (click)="setField('gender', g.v)">{{ g.label }}</button>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (step() === 2) {
+            <div>
+              <h2>{{ step2Title() }}</h2>
+              <div class="nd-form-grid nd-form-grid--3">
+                <label class="nd-field">
+                  <span>{{ L().height }}</span>
+                  <input type="number" [value]="form().height" (input)="setFieldFromInput('height', $event)" />
+                  <span class="nd-error">{{ errors()['height'] }}</span>
+                </label>
+                <label class="nd-field">
+                  <span>{{ L().currentWeight }}</span>
+                  <input type="number" [value]="form().currentWeight" (input)="setFieldFromInput('currentWeight', $event)" />
+                  <span class="nd-error">{{ errors()['currentWeight'] }}</span>
+                </label>
+                <label class="nd-field">
+                  <span>{{ L().targetWeight }}</span>
+                  <input type="number" [value]="form().targetWeight" (input)="setFieldFromInput('targetWeight', $event)" />
+                  <span class="nd-error">{{ errors()['targetWeight'] }}</span>
+                </label>
+              </div>
+              <div class="nd-form-grid" style="margin-top:18px">
+                <label class="nd-field">
+                  <span>{{ L().goal }}</span>
+                  <select [value]="form().goal" (change)="setFieldFromInput('goal', $event)">
+                    @for (o of goalOpts(); track o.v) { <option [value]="o.v">{{ o.label }}</option> }
+                  </select>
+                </label>
+                <label class="nd-field">
+                  <span>{{ L().activity }}</span>
+                  <select [value]="form().activity" (change)="setFieldFromInput('activity', $event)">
+                    @for (o of activityOpts(); track o.v) { <option [value]="o.v">{{ o.label }}</option> }
+                  </select>
+                </label>
+              </div>
+            </div>
+          }
+
+          @if (step() === 3) {
+            <div>
+              <h2>{{ step3Title() }}</h2>
+              <p class="nd-step3__sub">{{ step3Sub() }}</p>
+              <div class="nd-form-col">
+                <label class="nd-field">
+                  <span>{{ L().medical }}</span>
+                  <textarea rows="2" [value]="form().medical" (input)="setFieldFromInput('medical', $event)"></textarea>
+                </label>
+                <label class="nd-field">
+                  <span>{{ L().allergies }}</span>
+                  <textarea rows="2" [value]="form().allergies" (input)="setFieldFromInput('allergies', $event)"></textarea>
+                </label>
+                <label class="nd-field">
+                  <span>{{ L().medications }} <span class="nd-field__hint">{{ L().medsHint }}</span></span>
+                  <textarea rows="2" [value]="form().medications" (input)="setFieldFromInput('medications', $event)"></textarea>
+                </label>
+                <label class="nd-agree">
+                  <input type="checkbox" [checked]="form().agree" (change)="setFieldFromCheckbox('agree', $event)" />
+                  <span>{{ L().agree }}</span>
+                </label>
+                <span class="nd-error">{{ errors()['agree'] }}</span>
+              </div>
+            </div>
+          }
+
+          <div class="nd-form-nav">
+            <button type="button" class="nd-btn-back" [class.hidden]="step() === 1" (click)="goBack()">{{ backLabel() }}</button>
+            <button type="button" class="nd-btn-next" [disabled]="submitting()" (click)="goNext()">{{ nextLabel() }}</button>
+          </div>
+        </div>
+      } @else {
+        <div class="nd-success">
+          <div class="nd-success__icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1B5E20" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h2>{{ successTitle() }}</h2>
+          <p>{{ successText() }}</p>
+          <a [href]="waLink()" target="_blank" rel="noopener" class="nd-success__btn">💬 {{ successBtn() }}</a>
+        </div>
+      }
+    </section>
+  </main>
+  <app-footer />
+</div>

@@ -1,0 +1,45 @@
+<nav class="nd-nav" [class.scrolled]="scrolled()">
+  <div class="nd-nav__bar">
+    <div class="nd-nav__inner">
+      <a routerLink="/" class="nd-nav__brand">
+        <img src="assets/nutridoc-logo.png" alt="NutriDoc logo" width="42" height="42" />
+        <span class="nd-nav__brand-text">
+          <span class="nd-nav__name">NutriDoc</span>
+          <span class="nd-nav__tagline">{{ tagline() }}</span>
+        </span>
+      </a>
+
+      <div class="nd-nav__links nd-desktop-nav">
+        @for (link of links(); track link.key) {
+          <a [routerLink]="link.href" class="nd-nav__link" [class.active]="link.key === active">{{ link.label }}</a>
+        }
+      </div>
+
+      <div class="nd-nav__actions">
+        <button type="button" class="nd-nav__lang" (click)="toggleLang()" aria-label="Toggle language">
+          {{ langLabel() }}
+        </button>
+        <a routerLink="/subscription" class="nd-nav__cta nd-desktop-nav">{{ ctaLabel() }}</a>
+        <button type="button" class="nd-nav__burger nd-mobile-burger" (click)="toggleMenu()" aria-label="Menu">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  @if (menuOpen()) {
+    <div class="nd-nav__scrim" (click)="closeMenu()"></div>
+    <div class="nd-nav__drawer" [class.left]="drawerSide() === 'left'" [class.right]="drawerSide() === 'right'">
+      <div class="nd-nav__drawer-head">
+        <span class="nd-nav__name">NutriDoc</span>
+        <button type="button" (click)="closeMenu()" aria-label="Close" class="nd-nav__drawer-close">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+      @for (link of links(); track link.key) {
+        <a [routerLink]="link.href" class="nd-nav__drawer-link" (click)="closeMenu()">{{ link.label }}</a>
+      }
+      <a routerLink="/subscription" class="nd-nav__drawer-cta" (click)="closeMenu()">{{ ctaLabel() }}</a>
+    </div>
+  }
+</nav>

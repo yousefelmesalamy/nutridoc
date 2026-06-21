@@ -1,0 +1,98 @@
+<div class="nd-page">
+  <app-nav active="about" />
+  <main>
+    <section class="nd-hero">
+      <div class="nd-hero__grid">
+        <div class="nd-hero__photo-wrap">
+          <div class="nd-hero__photo">
+            <svg width="110" height="110" viewBox="0 0 24 24" fill="#66BB6A"><circle cx="12" cy="8" r="4.2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>
+          </div>
+        </div>
+        <div>
+          <span class="nd-eyebrow">{{ heroEyebrow() }}</span>
+          <h1 class="nd-h1">{{ name() }}</h1>
+          <p class="nd-hero__role">{{ title() }}</p>
+          <div class="nd-hero__creds">
+            @for (c of credentials(); track c) {
+              <span class="nd-hero__cred"><span class="nd-hero__check">✓</span>{{ c }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="nd-summary">
+      <span class="nd-eyebrow">{{ summaryEyebrow() }}</span>
+      <h2 class="nd-summary__h2">{{ summaryH2() }}</h2>
+      <p class="nd-summary__text">{{ summary() }}</p>
+    </section>
+
+    <section class="nd-ach">
+      <div class="nd-ach__inner">
+        <h2 class="nd-ach__h2">{{ achH2() }}</h2>
+        <div class="nd-ach__grid">
+          @for (a of achievements(); track a.text) {
+            <div class="nd-ach__item">
+              <span class="nd-ach__stat">{{ a.stat }}</span>
+              <p>{{ a.text }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="nd-edu">
+      <span class="nd-eyebrow">{{ eduEyebrow() }}</span>
+      <h2 class="nd-edu__h2">{{ eduH2() }}</h2>
+      <div class="nd-edu__grid">
+        @for (e of education(); track e.title) {
+          <div class="nd-edu__card">
+            <div class="nd-edu__years">{{ e.years }}</div>
+            <h3>{{ e.title }}</h3>
+            <p>{{ e.detail }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="nd-exp">
+      <div class="nd-exp__inner">
+        <span class="nd-eyebrow">{{ expEyebrow() }}</span>
+        <h2 class="nd-exp__h2">{{ expH2() }}</h2>
+        <div class="nd-exp__timeline">
+          @for (x of experience(); track x.role) {
+            <div class="nd-exp__item">
+              <span class="nd-exp__dot"></span>
+              <div class="nd-exp__period">{{ x.period }}</div>
+              <h3>{{ x.role }}</h3>
+              <div class="nd-exp__org">{{ x.org }}</div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="nd-skills">
+      <span class="nd-eyebrow">{{ skillsEyebrow() }}</span>
+      <h2 class="nd-skills__h2">{{ skillsH2() }}</h2>
+      <div class="nd-skills__grid">
+        @for (s of skills(); track s) {
+          <div class="nd-skills__item"><span class="nd-skills__bullet"></span>{{ s }}</div>
+        }
+      </div>
+    </section>
+
+    <section class="nd-social-cta">
+      <div class="nd-social-cta__inner">
+        <h2>{{ followH2() }}</h2>
+        <p>{{ followSub() }}</p>
+        <div class="nd-social-cta__grid">
+          @for (s of socials; track s.handle) {
+            <a [href]="s.href" target="_blank" rel="noopener" class="nd-social-cta__item"><span>{{ s.glyph }}</span>{{ s.handle }}</a>
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+  <app-footer />
+</div>

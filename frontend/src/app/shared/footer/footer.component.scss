@@ -1,0 +1,51 @@
+@import '../../../styles/tokens';
+
+.nd-footer {
+  background: $nd-green-darkest;
+  color: #CADCCD;
+  font-family: $font-body;
+  padding: 72px 28px 32px;
+}
+.nd-footer__inner { max-width: 1240px; margin: 0 auto; }
+
+.nd-footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+  gap: 44px;
+  align-items: start;
+
+  @include bp-860 { grid-template-columns: 1fr 1fr; gap: 32px; }
+  @include bp-520 { grid-template-columns: 1fr; }
+}
+
+.nd-footer__brand { display: flex; align-items: center; gap: 11px; margin-bottom: 18px; img { width: 46px; height: 46px; object-fit: contain; } }
+.nd-footer__name { font-family: $font-serif; font-weight: 600; font-size: 23px; color: #fff; }
+.nd-footer__blurb { margin: 0 0 20px; font-size: 15px; line-height: 1.7; color: #9DB6A2; max-width: 300px; }
+.nd-footer__socials { display: flex; gap: 10px; }
+.nd-footer__social {
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border-radius: 10px; background: rgba(255,255,255,.07); color: #A5D6A7; transition: .18s;
+  &:hover { background: $nd-green; color: #fff; }
+}
+
+.nd-footer__heading { margin: 0 0 16px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #fff; font-weight: 700; }
+.nd-footer__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+.nd-footer__list--contact { gap: 13px; font-size: 15px; }
+.nd-footer__link { color: #9DB6A2; text-decoration: none; font-size: 15px; transition: .15s; &:hover { color: #A5D6A7; } }
+.nd-footer__link--break { word-break: break-all; }
+.nd-footer__contact-row { display: flex; gap: 10px; align-items: center; }
+.nd-footer__glyph { color: $nd-green-mid; flex: none; }
+.nd-footer__static { color: #9DB6A2; }
+
+.nd-footer__bottom {
+  margin-top: 52px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+.nd-footer__copyright { font-size: 13.5px; color: #7E9784; }
+.nd-footer__madewith { font-size: 13.5px; color: #5E7A65; font-style: italic; }
