@@ -1,0 +1,42 @@
+@import '../../../styles/tokens';
+
+.nd-page { font-family: $font-body; color: $nd-text; background: #fff; overflow-x: hidden; }
+.nd-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: $nd-green; }
+.nd-h1 { font-family: $font-serif; font-weight: 500; font-size: 50px; line-height: 1.08; margin: 14px 0 14px; letter-spacing: -.02em; @include bp-880 { font-size: 42px; } @include bp-560 { font-size: 34px; } }
+
+.nd-hero { background: $nd-bg-soft; border-bottom: 1px solid $nd-border-soft; }
+.nd-hero__inner { max-width: 900px; margin: 0 auto; padding: 78px 28px 64px; text-align: center; p { font-size: 18px; color: $nd-text-muted; margin: 0 auto 30px; max-width: 54ch; } @include bp-560 { padding-left: 20px; padding-right: 20px; } }
+.nd-search { max-width: 480px; margin: 0 auto; position: relative; input { width: 100%; border: 1px solid $nd-border-green; border-radius: 999px; padding: 15px 22px; font-size: 15px; font-family: inherit; outline: none; background: #fff; color: $nd-text; &:focus { border-color: $nd-green; box-shadow: 0 0 0 3px rgba(46,125,50,.12); } } }
+
+.nd-results { max-width: 1180px; margin: 0 auto; padding: 44px 28px 90px; @include bp-560 { padding-left: 20px; padding-right: 20px; } }
+.nd-cats { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 44px; }
+.nd-cat-btn {
+  font-family: inherit; cursor: pointer; font-size: 14px; font-weight: 600; padding: 9px 18px; border-radius: 999px;
+  transition: .18s; background: #fff; color: #445249; border: 1px solid $nd-border-green;
+  &:hover { border-color: $nd-green; }
+  &.active { background: $nd-green-dark; color: #fff; border-color: $nd-green-dark; }
+}
+
+.nd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; @include bp-880 { grid-template-columns: 1fr 1fr; } @include bp-560 { grid-template-columns: 1fr; } }
+.nd-card {
+  text-decoration: none; color: inherit; background: #fff; border: 1px solid $nd-border-soft; border-radius: 18px;
+  overflow: hidden; display: flex; flex-direction: column; transition: .2s;
+  &:hover { box-shadow: 0 16px 40px rgba(15,36,23,.1); transform: translateY(-4px); }
+}
+.nd-card__img { height: 170px; display: flex; align-items: flex-end; padding: 14px; }
+.nd-card__cat { background: rgba(255,255,255,.92); color: $nd-green-dark; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px; }
+.nd-card__body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; h3 { font-size: 18.5px; font-weight: 700; line-height: 1.3; margin: 0 0 10px; } p { font-size: 14.5px; line-height: 1.6; color: $nd-text-muted; margin: 0 0 18px; flex: 1; } }
+.nd-card__foot { display: flex; align-items: center; gap: 10px; }
+.nd-card__avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(140deg, $nd-green-mid, $nd-green); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.nd-card__author { font-size: 13px; color: $nd-text-muted; font-weight: 600; }
+.nd-card__read { margin-inline-start: auto; font-size: 12.5px; color: #8A9A8E; }
+
+.nd-empty { text-align: center; padding: 60px 20px; color: $nd-text-faint; }
+.nd-empty__icon { font-size: 40px; margin-bottom: 12px; }
+
+.nd-pagination { display: flex; gap: 8px; justify-content: center; margin-top: 48px; }
+.nd-page-btn {
+  font-family: inherit; cursor: pointer; width: 42px; height: 42px; border-radius: 10px; font-weight: 700; font-size: 15px;
+  background: #fff; color: #445249; border: 1px solid $nd-border-green;
+  &.active { background: $nd-green-dark; color: #fff; border-color: $nd-green-dark; }
+}

@@ -1,0 +1,58 @@
+<div class="nd-page">
+  <app-nav active="blog" />
+  <main>
+    <section class="nd-hero">
+      <div class="nd-hero__inner">
+        <span class="nd-eyebrow">{{ eyebrow() }}</span>
+        <h1 class="nd-h1">{{ h1() }}</h1>
+        <p>{{ intro() }}</p>
+        <div class="nd-search">
+          <input [value]="query()" (input)="onSearchInputEvent($event)" [placeholder]="searchPlaceholder()" />
+        </div>
+      </div>
+    </section>
+
+    <section class="nd-results">
+      <div class="nd-cats">
+        <button type="button" class="nd-cat-btn" [class.active]="activeCategory() === 'all'" (click)="selectCategory('all')">{{ ar() ? 'الكل' : 'All' }}</button>
+        @for (c of categories(); track c.slug) {
+          <button type="button" class="nd-cat-btn" [class.active]="activeCategory() === c.slug" (click)="selectCategory(c.slug)">{{ categoryName(c) }}</button>
+        }
+      </div>
+
+      @if (loading()) {
+        <div class="nd-empty"><p>{{ ar() ? 'جارٍ التحميل...' : 'Loading...' }}</p></div>
+      } @else if (pagePosts().length > 0) {
+        <div class="nd-grid">
+          @for (post of pagePosts(); track post.id) {
+            <a [routerLink]="['/blog', post.slug]" class="nd-card">
+              <div class="nd-card__img" [style.background]="post.cover_image_url ? 'url(' + post.cover_image_url + ') center/cover' : 'linear-gradient(140deg,#A5D6A7,#66BB6A)'">
+                <span class="nd-card__cat">{{ postCategoryName(post) }}</span>
+              </div>
+              <div class="nd-card__body">
+                <h3>{{ postTitle(post) }}</h3>
+                <p>{{ postExcerpt(post) }}</p>
+                <div class="nd-card__foot">
+                  <span class="nd-card__avatar">K</span>
+                  <span class="nd-card__author">{{ authorChip() }}</span>
+                  <span class="nd-card__read">{{ postReadLabel(post) }}</span>
+                </div>
+              </div>
+            </a>
+          }
+        </div>
+      } @else {
+        <div class="nd-empty"><div class="nd-empty__icon">🔍</div><p>{{ noResultsMsg() }}</p></div>
+      }
+
+      @if (totalPages() > 1) {
+        <div class="nd-pagination">
+          @for (p of pageNumbers(); track p) {
+            <button type="button" class="nd-page-btn" [class.active]="page() === p" (click)="goToPage(p)">{{ p }}</button>
+          }
+        </div>
+      }
+    </section>
+  </main>
+  <app-footer />
+</div>
