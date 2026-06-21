@@ -219,3 +219,42 @@
 .nd-badge.status-contacted { background: #fdf3e0; color: #b5790f; }
 .nd-badge.status-closed,
 .nd-badge.status-read { background: #eaf3ee; color: #2e7d52; }
+
+.nd-chip-group {
+  display: flex;
+  gap: .35rem;
+}
+
+.nd-chip {
+  border: 1px solid #e9edf0;
+  background: #f8fafa;
+  color: #6c7a78;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: .2rem .55rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.nd-chip:hover {
+  background: #eef1f3;
+}
+
+.nd-chip.active {
+  background: #2e8b57;
+  border-color: #2e8b57;
+  color: #fff;
+}
+
+.nd-chart-body {
+  padding: 1rem 1.1rem;
+  height: 220px;
+  position: relative;
+}
+
+.nd-chart-body canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
