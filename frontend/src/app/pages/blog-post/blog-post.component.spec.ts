@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { vi } from 'vitest';
 import { BlogPostComponent } from './blog-post.component';
 import { BlogService } from '../../core/blog.service';
@@ -56,5 +56,29 @@ describe('BlogPostComponent', () => {
     expect(component.copied()).toBe(true);
     await new Promise((resolve) => setTimeout(resolve, 1900));
     expect(component.copied()).toBe(false);
+  });
+
+});
+
+describe('BlogPostComponent (error case)', () => {
+  it('shows a not-found message and stops loading when the post request errors', async () => {
+    const errorSpy: { post: ReturnType<typeof vi.fn> } = { post: vi.fn() };
+    errorSpy.post.mockReturnValue(throwError(() => new Error('not found')));
+
+    await TestBed.configureTestingModule({
+      imports: [BlogPostComponent],
+      providers: [
+        provideRouter([]),
+        { provide: BlogService, useValue: errorSpy },
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap({ slug: 'missing-post' }) } } },
+      ],
+    }).compileComponents();
+    const errorFixture = TestBed.createComponent(BlogPostComponent);
+    errorFixture.detectChanges();
+    const component = errorFixture.componentInstance;
+
+    expect(component.loading()).toBe(false);
+    expect(component.notFound()).toBe(true);
+    expect(errorFixture.nativeElement.textContent).toContain('Article not found.');
   });
 });

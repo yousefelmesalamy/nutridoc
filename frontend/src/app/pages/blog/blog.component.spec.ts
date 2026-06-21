@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { vi } from 'vitest';
 import { BlogComponent } from './blog.component';
 import { BlogService } from '../../core/blog.service';
@@ -65,5 +65,37 @@ describe('BlogComponent', () => {
   it('shows no-results state for an empty filtered set', () => {
     setup([]);
     expect(component.pagePosts().length).toBe(0);
+  });
+
+  it('stops loading and clears posts when the posts request errors', () => {
+    blogServiceSpy = { categories: vi.fn(), posts: vi.fn() };
+    blogServiceSpy.categories.mockReturnValue(of(categories));
+    blogServiceSpy.posts.mockReturnValue(throwError(() => new Error('network error')));
+    TestBed.configureTestingModule({
+      imports: [BlogComponent],
+      providers: [provideRouter([]), { provide: BlogService, useValue: blogServiceSpy }],
+    });
+    fixture = TestBed.createComponent(BlogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(component.loading()).toBe(false);
+    expect(component.allPosts().length).toBe(0);
+  });
+
+  it('stops loading when the categories request errors', () => {
+    blogServiceSpy = { categories: vi.fn(), posts: vi.fn() };
+    blogServiceSpy.categories.mockReturnValue(throwError(() => new Error('network error')));
+    blogServiceSpy.posts.mockReturnValue(of([]));
+    TestBed.configureTestingModule({
+      imports: [BlogComponent],
+      providers: [provideRouter([]), { provide: BlogService, useValue: blogServiceSpy }],
+    });
+    fixture = TestBed.createComponent(BlogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(component.categories().length).toBe(0);
+    expect(component.loading()).toBe(false);
   });
 });

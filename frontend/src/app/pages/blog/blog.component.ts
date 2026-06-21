@@ -29,7 +29,10 @@ export class BlogComponent {
   readonly loading = signal(true);
 
   constructor() {
-    this.blogService.categories().subscribe((cats) => this.categories.set(cats));
+    this.blogService.categories().subscribe({
+      next: (cats) => this.categories.set(cats),
+      error: () => this.categories.set([]),
+    });
     this.fetchPosts();
   }
 
@@ -38,10 +41,17 @@ export class BlogComponent {
     this.blogService.posts({
       category: this.activeCategory() === 'all' ? undefined : this.activeCategory(),
       q: this.query().trim() || undefined,
-    }).subscribe((posts) => {
-      this.allPosts.set(posts);
-      this.page.set(1);
-      this.loading.set(false);
+    }).subscribe({
+      next: (posts) => {
+        this.allPosts.set(posts);
+        this.page.set(1);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.allPosts.set([]);
+        this.page.set(1);
+        this.loading.set(false);
+      },
     });
   }
 

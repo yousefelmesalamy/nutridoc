@@ -72,6 +72,8 @@
           </div>
         </section>
       }
+    } @else if (notFound()) {
+      <section class="nd-loading"><p>{{ notFoundMsg() }}</p></section>
     }
   </main>
   <app-footer />

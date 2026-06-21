@@ -24,12 +24,19 @@ export class BlogPostComponent {
   readonly post = signal<BlogPostDetail | null>(null);
   readonly loading = signal(true);
   readonly copied = signal(false);
+  readonly notFound = signal(false);
 
   constructor() {
     const slug = this.route.snapshot.paramMap.get('slug')!;
-    this.blogService.post(slug).subscribe((p) => {
-      this.post.set(p);
-      this.loading.set(false);
+    this.blogService.post(slug).subscribe({
+      next: (p) => {
+        this.post.set(p);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.notFound.set(true);
+        this.loading.set(false);
+      },
     });
   }
 
@@ -74,4 +81,5 @@ export class BlogPostComponent {
   readonly copyLabel = computed(() => (this.copied() ? (this.ar() ? 'تم النسخ!' : 'Copied!') : (this.ar() ? 'انسخ الرابط' : 'Copy link')));
   readonly waHref = computed(() => `https://wa.me/?text=${encodeURIComponent(this.ar() ? 'مقال رائع من نوتري دوك' : 'Great read from NutriDoc')}`);
   readonly moreTitle = computed(() => (this.ar() ? 'اقرأ المزيد' : 'Keep Reading'));
+  readonly notFoundMsg = computed(() => (this.ar() ? 'المقال غير موجود.' : 'Article not found.'));
 }
