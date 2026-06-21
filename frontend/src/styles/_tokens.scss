@@ -1,0 +1,31 @@
+// Greens (from project/*.dc.html)
+$nd-green-deepest: #0A1F10;
+$nd-green-darkest: #0F2417;
+$nd-green-dark:    #1B5E20;
+$nd-green:         #2E7D32;
+$nd-green-mid:     #66BB6A;
+$nd-green-light:   #A5D6A7;
+
+$nd-bg:            #FAFCFA;
+$nd-bg-soft:       #F7FAF7;
+$nd-white:         #ffffff;
+
+$nd-text:          #0F2417;
+$nd-text-soft:     #445249;
+$nd-text-muted:    #5C6E61;
+$nd-text-faint:    #7A8A7E;
+
+$nd-border:        #E2EBE3;
+$nd-border-soft:   #E8F0E9;
+$nd-border-green:  #D7E8D9;
+
+$font-body: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
+$font-serif: 'Newsreader', serif;
+
+@mixin bp-1024 { @media (max-width: 1024px) { @content; } }
+@mixin bp-920  { @media (max-width: 920px)  { @content; } }
+@mixin bp-880  { @media (max-width: 880px)  { @content; } }
+@mixin bp-860  { @media (max-width: 860px)  { @content; } }
+@mixin bp-640  { @media (max-width: 640px)  { @content; } }
+@mixin bp-560  { @media (max-width: 560px)  { @content; } }
+@mixin bp-520  { @media (max-width: 520px)  { @content; } }
