@@ -121,6 +121,63 @@
 </div>
 
 <div class="row">
+  <div class="col-lg-4 mb-4">
+    <div class="nd-panel">
+      <div class="nd-panel-header">
+        <h3><i class="fas fa-book mr-1 text-muted"></i> {% trans "Posts Over Time" %}</h3>
+        <div class="nd-chip-group" data-target="chart-posts">
+          <button type="button" class="nd-chip" data-range="7">7D</button>
+          <button type="button" class="nd-chip active" data-range="30">30D</button>
+          <button type="button" class="nd-chip" data-range="90">90D</button>
+          <button type="button" class="nd-chip" data-range="12m">12M</button>
+        </div>
+      </div>
+      <div class="nd-panel-body nd-chart-body">
+        <canvas id="chart-posts"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 mb-4">
+    <div class="nd-panel">
+      <div class="nd-panel-header">
+        <h3><i class="fas fa-envelope mr-1 text-muted"></i> {% trans "Contacts Over Time" %}</h3>
+        <div class="nd-chip-group" data-target="chart-contacts">
+          <button type="button" class="nd-chip" data-range="7">7D</button>
+          <button type="button" class="nd-chip active" data-range="30">30D</button>
+          <button type="button" class="nd-chip" data-range="90">90D</button>
+          <button type="button" class="nd-chip" data-range="12m">12M</button>
+        </div>
+      </div>
+      <div class="nd-panel-body nd-chart-body">
+        <canvas id="chart-contacts"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 mb-4">
+    <div class="nd-panel">
+      <div class="nd-panel-header">
+        <h3><i class="fas fa-clipboard-list mr-1 text-muted"></i> {% trans "Plan Requests Over Time" %}</h3>
+        <div class="nd-chip-group" data-target="chart-plan-requests">
+          <button type="button" class="nd-chip" data-range="7">7D</button>
+          <button type="button" class="nd-chip active" data-range="30">30D</button>
+          <button type="button" class="nd-chip" data-range="90">90D</button>
+          <button type="button" class="nd-chip" data-range="12m">12M</button>
+        </div>
+      </div>
+      <div class="nd-panel-body nd-chart-body">
+        <canvas id="chart-plan-requests"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ posts_chart|json_script:"posts-chart-data" }}
+{{ contacts_chart|json_script:"contacts-chart-data" }}
+{{ plan_requests_chart|json_script:"plan-requests-chart-data" }}
+
+<div class="row">
   {{ block.super }}
 </div>
 {% endblock %}

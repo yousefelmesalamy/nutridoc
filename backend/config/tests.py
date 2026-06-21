@@ -97,3 +97,12 @@ class AdminDashboardTemplateTest(TestCase):
         self.assertContains(response, "Unread Contacts")
         self.assertContains(response, "New Plan Requests")
         self.assertContains(response, "Stay Hydrated")
+
+    def test_dashboard_renders_chart_panels(self):
+        response = self.client.get("/admin/")
+        self.assertContains(response, 'id="chart-posts"')
+        self.assertContains(response, 'id="chart-contacts"')
+        self.assertContains(response, 'id="chart-plan-requests"')
+        self.assertContains(response, 'id="posts-chart-data"')
+        self.assertContains(response, 'data-range="7"')
+        self.assertContains(response, 'data-range="12m"')
