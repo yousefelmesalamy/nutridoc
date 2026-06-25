@@ -160,6 +160,31 @@ CKEDITOR_5_CONFIGS = {
             'contentToolbar': ['tableColumn', 'tableRow', 'mergeTableCells'],
         },
     },
+    'arabic': {
+        'toolbar': [
+            'heading', '|',
+            'bold', 'italic', 'underline', 'strikethrough', '|',
+            'link', 'blockQuote', '|',
+            'bulletedList', 'numberedList', '|',
+            'outdent', 'indent', '|',
+            'imageUpload', 'insertTable', 'mediaEmbed', '|',
+            'undo', 'redo',
+        ],
+        'image': {
+            'toolbar': [
+                'imageTextAlternative', '|',
+                'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+            ],
+            'styles': ['alignLeft', 'alignCenter', 'alignRight'],
+        },
+        'table': {
+            'contentToolbar': ['tableColumn', 'tableRow', 'mergeTableCells'],
+        },
+        'language': {
+            'content': 'ar',
+            'ui': 'en',
+        },
+    },
 }
 
 CORS_ALLOWED_ORIGINS = [

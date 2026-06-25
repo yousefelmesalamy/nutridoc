@@ -22,7 +22,7 @@ class BlogPost(models.Model):
     excerpt_en = models.TextField()
     excerpt_ar = models.TextField()
     body_en = CKEditor5Field(config_name="default")
-    body_ar = CKEditor5Field(config_name="default")
+    body_ar = CKEditor5Field(config_name="arabic")
     author = models.CharField(max_length=120, default="Dr. Karim Eltaher")
     cover_image_url = models.URLField(blank=True)
     read_time_minutes = models.PositiveIntegerField()
