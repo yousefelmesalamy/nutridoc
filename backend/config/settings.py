@@ -190,9 +190,11 @@ CKEDITOR_5_CONFIGS = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
+    "https://frontend-taupe-three-84.vercel.app",
 ]
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^http://localhost:\d+$",
+    r"^https://frontend-[a-z0-9]+-yousefelmesalmays-projects\.vercel\.app$",
 ]
 
 REST_FRAMEWORK = {
