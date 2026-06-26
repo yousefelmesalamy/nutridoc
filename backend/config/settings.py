@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-$qqitwespx0c$a=7o3&q9a^0e!@%+z^0rq)w+w%=urmswl)%v6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nutridoc.pythonanywhere.com']
 
 
 # Application definition
